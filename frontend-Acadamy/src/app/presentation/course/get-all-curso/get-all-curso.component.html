@@ -1,0 +1,97 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div *ngIf="rol === 1" class="card-body">
+      <button class="btn btn-success" (click)="crearCurso()">
+        Crear Curso
+      </button>
+    </div>
+
+
+    <style>
+      .cardCurso{
+          width: 22.5rem !important;
+      }
+  
+      @media screen  and (max-width: 1020px) {
+          .cardCurso{
+              width: 18.3rem !important;
+          }
+      }
+  
+  </style>
+  
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-12 col-md-12">
+              <div class="container-fluid">
+                  <div class="row" id="contenedorCursos">
+                      
+            <div class="col-12 col-md-4" style="margin-top:30px;" *ngFor="let course of courses; let i = index" >
+              <div class="card cardCurso" style="width: 22.5rem;">
+                  <button (click)="curso(course.titulo)">
+                      <img src="../../../../assets/archivos/{{course.imagen}}" class="card-img-top" alt="{{course.titulo}}" style="height: 18rem;width:100%;">
+                      <div class="card-body">
+                          <h5 class="card-title">{{course.titulo}}</h5>
+                          <p class="card-text">{{course.descripcion}}</p>
+                      </div>
+                  </button>
+              </div>
+              <div *ngIf="rol === 1" class="card-body">
+                <button class="btn btn-success" (click)="openModal(i)">
+                  Actualizar Curso
+                </button>
+                <button
+                  class="btn btn-danger ms-5"
+                  (click)="deleteCourse( course.titulo)">
+                  Eliminar curso
+                </button>
+              </div>
+            </div>
+          </div>
+            </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Formulario</h2>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  [class.show]="showModal"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar curso</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <app-update-course [courseInput]="selected"></app-update-course> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+       

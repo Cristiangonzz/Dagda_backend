@@ -1,0 +1,119 @@
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+
+    <h1 class="mb-2">Curso: {{curso.titulo}}</h1>
+
+    <style>
+      .cardCurso{
+          width: 22.5rem !important;
+      }
+  
+      @media screen  and (max-width: 1020px) {
+          .cardCurso{
+              width: 18.3rem !important;
+          }
+      }
+  
+  </style>
+  
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-12 col-md-12">
+              <div class="container-fluid">
+                  <div class="row" id="contenedorCursos">
+                      
+              <div class="card cardCurso" style="width: 22.5rem;">
+                  
+                  <img src="../../../../assets/archivos/{{curso.imagen}}" class="card-img-top" alt="{{curso.titulo}}" style="height: 18rem;width:100%;">
+                  <div class="card-body">
+                      <h5 class="card-title">{{curso.titulo}}</h5>
+                      <p class="card-text">{{curso.descripcion}}</p>
+                  </div>
+              </div>
+              <div *ngIf="rol" class="card-body">
+                <button class="btn btn-success" (click)="openModal()">
+                  Actualizar Curso
+                </button>
+                <button
+                  class="btn btn-danger ms-5"
+                  (click)="deleteCourse(curso.titulo)">
+                  Eliminar curso
+                </button>
+              </div>
+              <div *ngIf="!rol && !suscripto" class="card-body">
+                <button class="subbt" (click)="inscribirUsuario(curso)">
+                  inscribirse
+                </button>
+              </div>
+
+              <div *ngIf="!rol && suscripto" class="card-body">
+                <button class="subbt">
+                  Inscripto
+                </button>
+              </div>
+           
+          </div>
+            </div>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                  Accordion Item #1
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+  </div>
+  
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Formulario</h2>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  [class.show]="showModal"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar curso</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="closeModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <app-update-course [courseInput]="selected"></app-update-course> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+       

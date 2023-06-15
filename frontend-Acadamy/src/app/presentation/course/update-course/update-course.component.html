@@ -1,0 +1,78 @@
+<div class="container">
+  <form (ngSubmit)="send()" [formGroup]="FormRegister">
+    <div class="w-100">
+      <app-form
+        [control]="FormRegister.controls.title"
+        type="text"
+        label="Titulo"
+        placeHolder=""
+      ></app-form>
+    </div>
+    <div class="w-100">
+      <app-form
+        [control]="FormRegister.controls.description"
+        type="text"
+        label="Descripción"
+        placeHolder=""
+      ></app-form>
+    </div>
+
+    <div class="w-100">
+      <app-form
+        [control]="FormRegister.controls.duration"
+        type="text"
+        label="Duración"
+        placeHolder=""
+      ></app-form>
+    </div>
+
+    <div class="w-100">
+      <app-form
+        [control]="FormRegister.controls.requirements"
+        type="text"
+        label="Requisitos"
+        placeHolder=""
+      ></app-form>
+    </div>
+
+    <div class="w-100">
+      <label class="form-label">Contenido</label>
+      <div formArrayName="content">
+        <div
+          *ngFor="let content of contentForms.controls; let i = index"
+          class="w-100"
+        >
+          <div class="input-group">
+            <input
+              type="text"
+              [formControlName]="i"
+              placeholder="Contenido {{ i + 1 }}"
+              class="form-control"
+            />
+            <button
+              type="button"
+              (click)="removeContent(i)"
+              class="btn btn-outline-danger"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="addContent()"
+          class="btn btn-outline-primary w-100"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="FormRegister.invalid"
+      class="btn btn-success"
+    >
+      Actualizar
+    </button>
+  </form>
+</div>
