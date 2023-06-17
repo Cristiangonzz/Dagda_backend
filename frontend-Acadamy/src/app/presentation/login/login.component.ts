@@ -21,7 +21,7 @@ export class LoginComponent {
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     clave: new FormControl<string>('', [
       Validators.required,
-      Validators.minLength(8),
+      Validators.minLength(5),
     ]),
   });
 
@@ -65,4 +65,14 @@ export class LoginComponent {
       });
   }
   google() {}
+  registrarse() {
+    this.router.navigate([`/usuario/registrar`]);
+  }
+  generarClave(){
+    const email = this.formLogin.get('email')?.value;
+
+    //
+    //editar contraseña de usuario
+    //enviar por correo la nueva contraseña
+  }
 }

@@ -8,12 +8,13 @@ import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.modu
 import { GetMembresiaUsuarioComponent } from './get-membresia-usuario/get-membresia-usuario.component';
 import { CreateMembresiaUsuarioComponent } from './crear-membresia-usuario/create-membresia-usuario.component';
 import { RoutingMembresiaUsuarioModule } from './routing-membresia-usuario.module';
+import { CreateReferenciarUsuarioComponent } from './referenciar-usuario/create-referenciar-usuario.component';
 
 @NgModule({
   declarations: [
     CreateMembresiaUsuarioComponent,
     GetMembresiaUsuarioComponent,
-   
+    CreateReferenciarUsuarioComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +29,8 @@ import { RoutingMembresiaUsuarioModule } from './routing-membresia-usuario.modul
   ],
   exports: [
     CreateMembresiaUsuarioComponent,
-    GetMembresiaUsuarioComponent,],
+    GetMembresiaUsuarioComponent,
+    CreateReferenciarUsuarioComponent,
+  ],
 })
 export class MembresiaUsuarioModule {}

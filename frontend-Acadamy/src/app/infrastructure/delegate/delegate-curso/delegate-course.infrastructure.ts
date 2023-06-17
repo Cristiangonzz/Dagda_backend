@@ -4,6 +4,8 @@ import { DeleteCursoUseCase } from "src/app/application/use-case/curso/delete-cu
 import { GetAllCursoUseCase } from "src/app/application/use-case/curso/find-all-course.use-case";
 import { GetCourseUseCase } from "src/app/application/use-case/curso/get-by-id-curso.use-case";
 import { GetCursoByNameUseCase } from "src/app/application/use-case/curso/get-by-titulo-curso.use-case";
+import { GetImagenCursoUseCase } from "src/app/application/use-case/curso/get-imagen-curso.use-case";
+import { GuardarImagenCursoUseCase } from "src/app/application/use-case/curso/guardar-imagen-curso.use-case";
 import { UpdateCursoUseCase } from "src/app/application/use-case/curso/update-curso.use-case";
 import { CursoService } from "src/app/domain/services/curso.service.domain";
 
@@ -28,6 +30,32 @@ const AgregarCursoCarritoUseCaseFactory = (() => {
   const factory = (): AgregarCursoCarritoUseCase => {
     if (!instance) {
       instance = new AgregarCursoCarritoUseCase();
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
+const GuardarImagenCursoUseCaseFactory = (() => {
+  let instance: GuardarImagenCursoUseCase;
+
+  const factory = (service : CursoService): GuardarImagenCursoUseCase => {
+    if (!instance) {
+      instance = new GuardarImagenCursoUseCase(service);
+    }
+
+    return instance;
+  };
+
+  return factory;
+})();
+const GetImagenCursoUseCaseFactory = (() => {
+  let instance: GetImagenCursoUseCase;
+
+  const factory = (service : CursoService): GetImagenCursoUseCase => {
+    if (!instance) {
+      instance = new GetImagenCursoUseCase(service);
     }
 
     return instance;
@@ -140,9 +168,22 @@ export const cursoUseCaseProviders = {
     useFactory: GetCursoByNameUseCaseFactory,
     deps: [CursoService],
   },
+  //funcion de carrito
   AgregarCursoCarritoUseCaseProvider: {
     provide: AgregarCursoCarritoUseCase,
     useFactory: AgregarCursoCarritoUseCaseFactory,
     deps: [],
   },
+//Funciones de imagenes
+  GuardarImagenCursoUseProvider: {
+    provide: GuardarImagenCursoUseCase,
+    useFactory: GuardarImagenCursoUseCaseFactory,
+    deps: [CursoService],
+  },
+  GetImagenCursoUseProvider: {
+    provide: GetImagenCursoUseCase,
+    useFactory: GetImagenCursoUseCaseFactory,
+    deps: [CursoService],
+  },
+
 };

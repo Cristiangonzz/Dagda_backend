@@ -4,6 +4,7 @@ import { BaseService } from './base.service.domain';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UpdateCursoDto } from 'src/app/infrastructure/dto/create/update-curso.dto';
+import { ImagenCursoDto } from 'src/app/infrastructure/dto/create/guardar-imagen-curso.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -11,4 +12,6 @@ import { UpdateCursoDto } from 'src/app/infrastructure/dto/create/update-curso.d
 export abstract class CursoService extends BaseService<CursoDomainEntity> {
   abstract create(data: CrearCursoDto): Observable<CursoDomainEntity>;
   abstract update(id: string, entity: UpdateCursoDto): Observable<CursoDomainEntity>;
+  abstract saveImagen(imagen: FormData): Observable<string>;
+  abstract getimagen(filname: string): Observable<any>;
 }

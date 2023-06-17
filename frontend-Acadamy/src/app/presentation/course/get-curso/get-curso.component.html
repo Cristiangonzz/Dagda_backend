@@ -24,7 +24,7 @@
                       
               <div class="card cardCurso" style="width: 22.5rem;">
                   
-                  <img src="../../../../assets/archivos/{{curso.imagen}}" class="card-img-top" alt="{{curso.titulo}}" style="height: 18rem;width:100%;">
+                  <img [src]="curso.imagen" class="card-img-top" alt="{{curso.titulo}}" style="height: 18rem;width:100%;">
                   <div class="card-body">
                       <h5 class="card-title">{{curso.titulo}}</h5>
                       <p class="card-text">{{curso.descripcion}}</p>

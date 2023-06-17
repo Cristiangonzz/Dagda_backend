@@ -16,6 +16,7 @@ import { UsuarioService } from 'src/app/domain/services/usuario.service.domain';
 })
 export class GetAllCursoComponent implements OnInit, OnDestroy {
   courses!: CursoDomainEntity[];
+  urlImagen!: string ;
   delegateCurso = cursoUseCaseProviders;
   delegateLogin = loginUseCaseProviders;
   sweet = new SweetAlert();

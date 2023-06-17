@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {  Observable} from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { CursoService } from 'src/app/domain/services/curso.service.domain';
 import { CrearCursoDto } from '../../dto/create/create-curso.dto';
 import { CursoDomainEntity } from 'src/app/domain/entities/curso.entity.domain';
 import { UpdateCursoDto } from '../../dto/create/update-curso.dto';
+import { ImagenCursoDto } from '../../dto/create/guardar-imagen-curso.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +19,9 @@ export class CursoImplementationService extends CursoService {
 
   httpOptions = {
     headers: new HttpHeaders({
+      'Accept': 'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'POST,GET,PUT,DELETE',
+      'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
       'Access-Control-Allow-Origin': '*',
     }),
   };
@@ -60,5 +62,24 @@ export class CursoImplementationService extends CursoService {
       `${this.URL}/curso/getTitulo/${titulo}`,
       this.httpOptions
     );
+  }
+
+  saveImagen(imagen: FormData): Observable<any> {
+    return this.http.post<any>(
+      `${this.URL}/curso/upload`,
+      imagen,
+      this.httpOptions
+    );
+  }
+  getimagen(filname: string): Observable<any> {
+    
+    return this.http
+      .get(`${this.URL}/curso/images/${filname}`, { responseType: 'blob' })
+      .pipe(
+        map((res: Blob) => {
+          const objectURL = URL.createObjectURL(res);
+          return objectURL;
+        })
+      );
   }
 }

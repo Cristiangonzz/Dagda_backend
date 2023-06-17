@@ -14,8 +14,11 @@
                           <app-form [control]="formLogin.controls.clave" type="password" label="Password" placeHolder=""></app-form>
                         </div>
                     </div>
+                    <a class="container" type="submit" (click)="registrarse()" style="color: blue;">Registrarse</a>
                     <button type="submit" class="subbt" (click)="signIn()" style="width: 200px;" > Ingresar </button>
-                </div>
+                    <a class="container" type="submit" (click)="generarClave()" style="color: rgb(0, 0, 255);">Olvide la contraseña</a>
+
+                  </div>
             </form> 
         </div>
     </div>       

@@ -7,6 +7,11 @@ import { UpdateUsuarioDto } from 'src/app/infrastructure/dto/create/update-usuar
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
 import { usuarioUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-usuario/delegate-usuario.infrastructure';
+import { IUsuarioDomain } from 'src/app/domain/interfaces/usuario.interface.domain';
+import { SendEmailDto } from 'src/app/infrastructure/dto/send-email.dto';
+import { nodeMailerUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-nodemailer/nodemailer.delegate.infrastructure';
+import { NodeMailerService } from 'src/app/domain/services/nodemailer.service.domain';
+import { MensajeCorreoDomainEntity } from 'src/app/domain/entities/mensaje-correo.entity.domain';
 
 @Component({
   selector: 'app-create-user',
@@ -16,6 +21,7 @@ import { usuarioUseCaseProviders } from 'src/app/infrastructure/delegate/delegat
 export class CreateUserComponent {
   delegateLogin = loginUseCaseProviders;
   delegateUsuario = usuarioUseCaseProviders;
+  delegateNodeMailer = nodeMailerUseCaseProviders;
 
   formCrear = new FormGroup({
     
@@ -33,11 +39,12 @@ export class CreateUserComponent {
 
   constructor(
     private readonly usuarioService: UsuarioService,
+    private readonly nodeMailerService: NodeMailerService,
     private readonly router: Router
   ) {}
 
-  signUp() {
-    this.user = this.formCrear.getRawValue() as UsuarioDomainEntity;
+  registrarUsuario() {
+   
 
     this.delegateUsuario.createUsuarioUseCaseProvider
       .useFactory(this.usuarioService)
@@ -56,4 +63,34 @@ export class CreateUserComponent {
         },
       });
   }
+  signUp() {
+    this.user = this.formCrear.getRawValue() as UsuarioDomainEntity;
+    const data: SendEmailDto = {
+      nombreTo: `${this.user.primer_nombre} ${this.user.primer_apellido}`,
+      emailTo: this.user.email,
+
+      nombreFrom: 'Academia Dagda',
+      emailFrom: 'cristianuruuy@gmail.com',
+
+      subject: 'Inscripcion a Curso',
+      body: `<b>Felicitaciones se registro en Academia Dagda , le damos la bienvenida!!</b>`,
+    };
+    this.delegateNodeMailer.nodeMailerUseCaseProvider
+      .useFactory(this.nodeMailerService)
+      .execute(data)
+      .subscribe({
+        next: (value: MensajeCorreoDomainEntity) => {
+          this.registrarUsuario();
+        },
+        error: () => {
+          this.sweet.toFire(
+            'Correo Invalido',
+            'Ingrese un correo ya existente',
+            'error'
+          );
+        },
+      });
+  }
+
+  
 }

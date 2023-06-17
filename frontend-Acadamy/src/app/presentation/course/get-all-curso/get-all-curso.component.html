@@ -29,7 +29,11 @@
             <div class="col-12 col-md-4" style="margin-top:30px;" *ngFor="let course of courses; let i = index" >
               <div class="card cardCurso" style="width: 22.5rem;">
                   <button (click)="curso(course.titulo)">
-                      <img src="../../../../assets/archivos/{{course.imagen}}" class="card-img-top" alt="{{course.titulo}}" style="height: 18rem;width:100%;">
+                    <img [src]="course.imagen" class="card-img-top" alt="{{course.imagen}}" *ngIf="course.imagen" style="height: 18rem;width:100%;">
+                    
+                    <!--  
+                      <img [src]="course.imagen" alt="Imagen seleccionada" *ngIf="course.imagen">
+                    -->
                       <div class="card-body">
                           <h5 class="card-title">{{course.titulo}}</h5>
                           <p class="card-text">{{course.descripcion}}</p>
