@@ -6,6 +6,9 @@ import { ICursoDomainService } from 'src/domain/services/curso.service.domain';
 import { CrearCursoDto } from 'src/infrastructure/dto/create/create-curso.dto';
 import { GetNombreCategoriaUseCase } from '../categoria/get-nombre-categoria.use-case.application copy';
 
+
+
+
 export class CrearCursoUseCase {
   constructor(
     private readonly cursoService: ICursoDomainService<CursoDomainEntity>,
@@ -16,6 +19,8 @@ export class CrearCursoUseCase {
   execute(data: CrearCursoDto): Observable<CursoDomainEntity> {
     const newCurso = new CursoDomainEntity();
     const caseCategoria = new GetNombreCategoriaUseCase(this.categoriaService);
+    //Guardar imagen en el servidor
+    
 
     return caseCategoria.execute(data.categoria).pipe(
       map((value: CategoriaDomainEntity) => {

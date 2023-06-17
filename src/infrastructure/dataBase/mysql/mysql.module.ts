@@ -28,6 +28,7 @@ import { IncripcionRepository } from './repositories/incripcion.repository';
 import { NodeMailerMySqlEntity } from './entities/nodemailer-mysql.entity';
 import { NodeMailerMySqlService } from './services/nodemailer.mysql.service';
 import { NodeMailerRepository } from './repositories/nodemailer.repository';
+import { imagenMySqlEntity } from './entities/imagen-mysql';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { NodeMailerRepository } from './repositories/nodemailer.repository';
       IncripcionMySqlEntity,
       UsuarioReferenciaMySqlEntity,
       NodeMailerMySqlEntity,
+      imagenMySqlEntity,
     ]),
   ],
   controllers: [],

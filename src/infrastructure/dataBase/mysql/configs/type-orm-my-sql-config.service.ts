@@ -10,6 +10,7 @@ import { UsuarioMySqlEntity } from '../entities/usuario-mysql.entity';
 import { UsuarioReferenciaMySqlEntity } from '../entities/usuario-referente-mysql.entity';
 import { IncripcionMySqlEntity } from '../entities/incripcion-mysql.entity';
 import { NodeMailerMySqlEntity } from '../entities/nodemailer-mysql.entity';
+import { imagenMySqlEntity } from '../entities/imagen-mysql';
 
 @Injectable()
 export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
@@ -36,6 +37,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
         UsuarioReferenciaMySqlEntity,
         IncripcionMySqlEntity,
         NodeMailerMySqlEntity,
+        imagenMySqlEntity,
       ],
       synchronize: false,
     };
