@@ -71,8 +71,6 @@ export class CursoController {
 
   @Get('images/:filename')
   getImage(@Param('filename') filename: string, @Res() res: Response) {
-    // const imagePath = path.resolve(`./images`,filename);
-    // res.sendFile(imagePath);
     console.log(res.sendFile(filename, { root: './images' }))
     res.sendFile(filename, { root: './images' });
   }

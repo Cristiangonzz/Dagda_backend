@@ -26,6 +26,7 @@ export class UpdateCursoUseCase {
             newCurso.imagen = data.imagen;
             newCurso.descripcion = data.descripcion;
             newCurso.detalle = data.detalle;
+            newCurso.precio = data.precio;
             newCurso.categoria = value;
             //newCurso.subCategoria = data.subCategoria;
             return newCurso;
@@ -42,6 +43,7 @@ export class UpdateCursoUseCase {
       newCurso.imagen = data.imagen;
       newCurso.descripcion = data.descripcion;
       newCurso.detalle = data.detalle;
+      newCurso.precio = data.precio;
       return this.cursoService.update(id, newCurso);
     }
   }
