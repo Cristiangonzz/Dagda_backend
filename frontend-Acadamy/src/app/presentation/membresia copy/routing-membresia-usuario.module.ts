@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PermissionGuard } from '../shared/guards/permission.guard';
-import { PermissionRolGuard } from '../shared/guards/permission-rol.guard';
+import { PermissionLogeadoGuard } from '../shared/guards/permission-logeado.guard';
 import { CreateMembresiaUsuarioComponent } from './crear-membresia-usuario/create-membresia-usuario.component';
 import { GetMembresiaUsuarioComponent } from './get-membresia-usuario/get-membresia-usuario.component';
 import { CreateReferenciarUsuarioComponent } from './referenciar-usuario/create-referenciar-usuario.component';
+import { PermissionRolAdminGuard } from '../shared/guards/permission-rol-admin.guard';
 const routes: Routes = [
   {
     path: '',
@@ -12,20 +12,20 @@ const routes: Routes = [
       {
         path: `create/:nombreMembresia/:posicionMembresia/:usuarioActual`,
         component: CreateMembresiaUsuarioComponent,
-        // canActivate: [PermissionGuard,PermissionRolGuard],
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
       },
-     
+
       {
         path: `get/:id`,
         component: GetMembresiaUsuarioComponent,
-        // canActivate: [PermissionGuard],
+        canActivate: [PermissionLogeadoGuard],
       },
       {
         path: `referencia/:id`,
         component: CreateReferenciarUsuarioComponent,
-        // canActivate: [PermissionGuard],
+        // canActivate: [PermissionLogeadoGuard],
       },
-     
+
       { path: `**`, redirectTo: 'get-all' },
     ],
   },

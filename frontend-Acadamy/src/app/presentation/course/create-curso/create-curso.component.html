@@ -12,16 +12,12 @@
             placeHolder=""
           ></app-form>
         </div>
+        
 
-        <div class="form-group">
-          <app-form 
-            [control]="FormRegister.controls.descripcion"
-            type="text"
-            label="Descripcion"
-            placeHolder=""
-          ></app-form>
-        </div>
-
+<div class="form-group">
+  <label class="form-label">Descripcion</label>
+  <angular-editor   formControlName="descripcion" ></angular-editor>
+      </div>
         <div class="form-group">
           <label class="form-label">Categoria</label>
               <select formControlName="categoria" class="form-control">
@@ -32,18 +28,7 @@
         <div *ngIf="this.curso.imagen">
           <img  width="100px"  [src]="this.curso.imagen" alt="Imagen desde el backend">
         </div>
-       <!--
-         <div class="form-group">       
-           <app-form
-           [control]="FormRegister.controls.imagen"
-           type="file"
-           label="imagen"
-           placeHolder=""
-           (change)="onFileSelected($event)"
-           ></app-form>
-           
-          </div>
-        -->
+       
 
         <div class="form-group">
           <app-form
@@ -64,15 +49,17 @@
 
       
 
-        <div class="row m-2">
+        <div class="form-group" style="margin: 3px;">
           <button
+          style="margin: 3px;"
             type="submit"
             [disabled]="FormRegister.invalid"
             class="btn btn-success"
           >
-            Enviar
+            Crear
           </button>
           <button
+          style="margin: 3px;"
             type="button"
             class="btn btn-danger"
             routerLink="/course/get-all"

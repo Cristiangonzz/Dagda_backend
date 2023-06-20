@@ -162,3 +162,43 @@ color: #878787;
 }
 
 
+
+
+/*for Demo Only*/
+.demo-row {
+  background-color: #333;
+  padding: 50px 0;
+}
+
+
+/*Implement*/
+.sponsor-feature {
+    background-color: #df4747;
+    padding: 20px;
+    border-radius: 50px;
+    min-height: 15px;
+    display: flex;
+
+    justify-content: center;
+    margin: 5px 0;
+}
+
+.conT i {
+  font-size: 30px;
+  padding: 5px;
+ }
+ .copW {
+  float: right;
+  padding: 20px;
+  color: white;
+ }
+
+ .payT {
+  float: left;
+  padding: 30px;
+ }
+ 
+ .payT i {
+  font-size: 30px;
+  padding: 5px;
+ }

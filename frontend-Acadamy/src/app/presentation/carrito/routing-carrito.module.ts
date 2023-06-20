@@ -10,28 +10,28 @@ const routes: Routes = [
       {
         path: 'canasta',
         component: CarritoComponent,
-        //canActivate: [PermissionGuard, PermissionRolGuard],
+        //canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       },
       {
         path: 'success',
         component: SuccessComponent,
-        //canActivate: [PermissionGuard, PermissionRolGuard],
+        //canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       },
       // {
       //   path: 'delete',
       //   component: DeleteCourseComponent,
-      //   canActivate: [PermissionGuard, PermissionRolGuard],
+      //   canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       // },
       // {
       //   path: 'get/:titulo',
       //   component: GetCursoComponent,
-      //   //canActivate: [PermissionGuard],
+      //   //canActivate: [PermissionLogeadoGuard],
       // },
       // {
       //   path: 'get-all',
       //   component: GetAllCursoComponent,
       // },
-       { path: `**`, redirectTo: 'canasta' },
+      { path: `**`, redirectTo: 'canasta' },
     ],
   },
 ];

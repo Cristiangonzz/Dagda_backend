@@ -7,6 +7,7 @@ import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.modu
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { RoutingHomeModule } from './routing-home.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -20,6 +21,7 @@ import { RoutingHomeModule } from './routing-home.module';
     RoutingHomeModule,
     InfrastructureModule,
     SharedModule,
+    AngularEditorModule ,
   ],
   exports: [],
 })

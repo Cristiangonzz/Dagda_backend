@@ -10,4 +10,6 @@ export interface UpdateCursoDto {
   subCategoria?: string;
 
   detalle?: string;
+
+  precio?: number;
 }

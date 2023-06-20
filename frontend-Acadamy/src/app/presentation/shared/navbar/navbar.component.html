@@ -37,10 +37,11 @@
       <li *ngIf="!usuarioLogeado" class="nav-item">
         <a class="nav-link" (click)="login()">iniciar sesion</a>
       </li>
+      
      
 
     </ul>
-    
+  
     <div *ngIf="usuarioLogeado" class="right-side d-flex"  >
       <ul class="navbar-nav"  >
         <div class="navbar-cart" (click)="carrito()">
@@ -71,8 +72,11 @@
               />
             </span>
           </a>
-          <div class="dropdown-menu" style="right: 0;margin-top: 10px;" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Dashboard</a>
+          <div class="dropdown-menu" style="right: 0;margin-top: 25px;" aria-labelledby="navbarDropdownMenuLink">
+            <a *ngIf="isAdmin" class ="dropdown-item" routerLink="usuario/adminCurso">admin Curso</a>
+            <a  *ngIf="isAdmin" class="dropdown-item" href="#">admin Membresia</a>
+            <a *ngIf="isAdmin" class="dropdown-item" href="#">admin Categoria</a>
+            <a *ngIf="isAdmin" class="dropdown-item" routerLink="usuario/adminUsuario">admin Cliente</a>
             <a class="dropdown-item" href="#">Editar perfil</a>
             <a class="dropdown-item" (click)="out()">salir</a>
           </div>

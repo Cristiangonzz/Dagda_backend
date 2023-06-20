@@ -6,23 +6,21 @@ import { RouterModule } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { SharedModule } from '../shared/shared.module';
-import {  CreateCursoComponent } from './create-curso/create-curso.component';
-import { SafePipe } from './pipe/safe.pipe';
-import { TitlePipe } from './pipe/title.pipe';
+import { CreateCursoComponent } from './create-curso/create-curso.component';
 import { RoutingCourseModule } from './routing-course.module';
 import { GetAllCursoComponent } from './get-all-curso/get-all-curso.component';
 import { GetCursoComponent } from './get-curso/get-curso.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { DeleteCursoComponent } from './delete-curso/delete-curso.component';
+import {UpdateCourseComponent } from './update-course/update-course.component';
 
 @NgModule({
   declarations: [
     CreateCursoComponent,
-    // DeleteCursoComponent,
-    // UpdateCursoComponent,
-    // GetCursoComponent,
+    DeleteCursoComponent,
+    UpdateCourseComponent,
     GetCursoComponent,
     GetAllCursoComponent,
-    SafePipe,
-    TitlePipe,
   ],
   imports: [
     CommonModule,
@@ -35,6 +33,8 @@ import { GetCursoComponent } from './get-curso/get-curso.component';
 
     InfrastructureModule,
     SharedModule,
+    //modulo para el sommer Note
+    AngularEditorModule,
   ],
   exports: [],
 })

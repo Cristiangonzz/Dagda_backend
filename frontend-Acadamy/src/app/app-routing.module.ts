@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackGuard } from './presentation/shared/guards/back.guard';
-import { PermissionGuard } from './presentation/shared/guards/permission.guard';
+import { PermissionLogeadoGuard } from './presentation/shared/guards/permission-logeado.guard';
 
 const routes: Routes = [
   {
@@ -17,32 +17,40 @@ const routes: Routes = [
   },
   {
     path: 'usuario',
-   // canActivate: [PermissionGuard],
+    // canActivate: [PermissionLogeadoGuard],
     loadChildren: () =>
-      import('./presentation/admin/usuario.module').then((m) => m.UsuarioModule),
+      import('./presentation/admin/usuario.module').then(
+        (m) => m.UsuarioModule
+      ),
   },
   {
     path: 'curso',
-   // canActivate: [PermissionGuard],
+    // canActivate: [PermissionLogeadoGuard],
     loadChildren: () =>
       import('./presentation/course/curso.module').then((m) => m.CursoModule),
   },
   {
     path: 'membresia',
-  //  canActivate: [PermissionGuard],
+    //  canActivate: [PermissionLogeadoGuard],
     loadChildren: () =>
-      import('./presentation/membresia/membresia.module').then((m) => m.MembresiaModule),
+      import('./presentation/membresia/membresia.module').then(
+        (m) => m.MembresiaModule
+      ),
   },
   {
     path: 'membresia-usuario',
-  //  canActivate: [PermissionGuard],
+    //  canActivate: [PermissionLogeadoGuard],
     loadChildren: () =>
-      import('./presentation/membresia copy/membresia-usuario.module').then((m) => m.MembresiaUsuarioModule),
+      import('./presentation/membresia copy/membresia-usuario.module').then(
+        (m) => m.MembresiaUsuarioModule
+      ),
   },
   {
     path: 'carrito',
     loadChildren: () =>
-      import('./presentation/carrito/carrito.module').then((m) => m.CarritoModule),
+      import('./presentation/carrito/carrito.module').then(
+        (m) => m.CarritoModule
+      ),
   },
   {
     path: 'home',

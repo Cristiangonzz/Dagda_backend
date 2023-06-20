@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioDomainEntity } from 'src/app/domain/entities/usuario.entity.domain';
@@ -13,12 +13,13 @@ import { nodeMailerUseCaseProviders } from 'src/app/infrastructure/delegate/dele
 import { NodeMailerService } from 'src/app/domain/services/nodemailer.service.domain';
 import { MensajeCorreoDomainEntity } from 'src/app/domain/entities/mensaje-correo.entity.domain';
 
+
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent {
+export class CreateUserComponent implements AfterViewInit{
   delegateLogin = loginUseCaseProviders;
   delegateUsuario = usuarioUseCaseProviders;
   delegateNodeMailer = nodeMailerUseCaseProviders;
@@ -42,6 +43,9 @@ export class CreateUserComponent {
     private readonly nodeMailerService: NodeMailerService,
     private readonly router: Router
   ) {}
+  ngAfterViewInit(): void {
+   window.scrollTo(0, 0); // Renderizar hacia arriba de la pantalla
+  }
 
   registrarUsuario() {
    
@@ -70,7 +74,7 @@ export class CreateUserComponent {
       emailTo: this.user.email,
 
       nombreFrom: 'Academia Dagda',
-      emailFrom: 'cristianuruuy@gmail.com',
+      emailFrom: 'academiadagda@gmail.com',
 
       subject: 'Inscripcion a Curso',
       body: `<b>Felicitaciones se registro en Academia Dagda , le damos la bienvenida!!</b>`,
@@ -85,7 +89,7 @@ export class CreateUserComponent {
         error: () => {
           this.sweet.toFire(
             'Correo Invalido',
-            'Ingrese un correo ya existente',
+            'Ingrese un correo valido',
             'error'
           );
         },

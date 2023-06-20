@@ -109,7 +109,7 @@ export class InscribirUsuarioCursoComponent implements OnInit {
       emailTo: this.dataUsuario.email,
 
       nombreFrom: 'Academia Dagda',
-      emailFrom: 'cristianuruuy@gmail.com',
+      emailFrom: 'academiadagda@gmail.com',
 
       subject: 'Inscripcion a Curso',
       body: `<b>Felicitaciones se inscribio al curso : ${this.inscripcion.curso} , le dejamos el link para abonar antes que comienze el curso </b>`,

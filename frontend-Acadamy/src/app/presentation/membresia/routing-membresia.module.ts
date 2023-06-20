@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PermissionGuard } from '../shared/guards/permission.guard';
-import { PermissionRolGuard } from '../shared/guards/permission-rol.guard';
+import { PermissionLogeadoGuard } from '../shared/guards/permission-logeado.guard';
 import { CreateMembresiaComponent } from './crear-membresia/create-membresia.component';
 import { GetAllMembresiaComponent } from './get-all-membresia/get-all-membresia.component';
 import { UpdateMembresiaComponent } from './update-membresia/update-membresia.component';
 import { GetMembresiaComponent } from './get-membresia/get-membresia.component';
+import { PermissionRolAdminGuard } from '../shared/guards/permission-rol-admin.guard';
 
 const routes: Routes = [
   {
@@ -14,22 +14,22 @@ const routes: Routes = [
       {
         path: `create`,
         component: CreateMembresiaComponent,
-       // canActivate: [PermissionGuard,PermissionRolGuard],
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
       },
       {
         path: `get-all`,
         component: GetAllMembresiaComponent,
-       // canActivate: [PermissionGuard],
+        canActivate: [PermissionLogeadoGuard],
       },
       {
         path: `get/:nombre`,
         component: GetMembresiaComponent,
-       // canActivate: [PermissionGuard],
+        // canActivate: [PermissionLogeadoGuard],
       },
       {
         path: `update`,
         component: UpdateMembresiaComponent,
-       // canActivate: [PermissionGuard,PermissionRolGuard],
+        // canActivate: [PermissionLogeadoGuard,PermissionRolGuard],
       },
       { path: `**`, redirectTo: 'get-all' },
     ],

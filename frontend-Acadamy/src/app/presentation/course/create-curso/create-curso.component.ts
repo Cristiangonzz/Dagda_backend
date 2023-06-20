@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
@@ -10,13 +10,16 @@ import { CrearCursoDto } from 'src/app/infrastructure/dto/create/create-curso.dt
 import { CategoriaService } from 'src/app/domain/services/categoria.service.domain';
 import { categoriaUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-categoria/delegate-categoria.infrastructure';
 import { CategoriaDomainEntity } from 'src/app/domain/entities/categoria.entity.domain';
-import { ImagenCursoDto } from 'src/app/infrastructure/dto/create/guardar-imagen-curso.dto';
+
+
+
+
 @Component({
   selector: 'app-create-curso',
   templateUrl: './create-curso.component.html',
   styleUrls: ['./create-curso.component.css'],
 })
-export class CreateCursoComponent implements OnInit {
+export class CreateCursoComponent implements OnInit ,AfterViewInit{
   delegateCurso = cursoUseCaseProviders;
   delegateCategoria = categoriaUseCaseProviders;
   delegateUsuario = usuarioUseCaseProviders;
@@ -25,14 +28,14 @@ export class CreateCursoComponent implements OnInit {
   sweet = new SweetAlert();
 
   FormRegister = new FormGroup({
-    titulo: new FormControl('', [Validators.required, Validators.minLength(5)]),
-    descripcion: new FormControl('', []),
+    titulo: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    descripcion: new FormControl(''),
     // imagen: new FormControl(null, [Validators.required]),
     categoria: new FormControl('', [Validators.required]),
     detalle: new FormControl(''),
     precio: new FormControl<number>(0, [Validators.required]),
   });
-
+ 
   curso: CrearCursoDto = {} as CrearCursoDto;
 
   constructor(
@@ -41,6 +44,9 @@ export class CreateCursoComponent implements OnInit {
     private router: Router,
     private readonly usuarioService: UsuarioService
   ) {}
+  ngAfterViewInit(): void {
+   window.scrollTo(0, 0);
+  }
 
   ngOnInit(): void {
     this.delegateCategoria.getAllCategoriaUseCaseProvider
@@ -81,7 +87,7 @@ export class CreateCursoComponent implements OnInit {
  
 
   send() {
-    
+  
     this.curso.descripcion = this.FormRegister.get('descripcion')
       ?.value as string;
     this.curso.precio = this.FormRegister.get('precio')?.value as number;
@@ -106,4 +112,7 @@ export class CreateCursoComponent implements OnInit {
   cancelar() {
     this.router.navigate(['/curso/get-all']);
   }
+
+
+
 }

@@ -19,6 +19,8 @@ export class FormComponent {
   @Input() type: string = '';
   @Input() inputId: string = '';
   @Input() placeHolder: string = '';
+  @Input() value!: string | number;
+ 
 
   errorMessages: Record<string, string> = {
     required: 'este campo es requerido',

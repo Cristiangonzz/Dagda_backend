@@ -6,15 +6,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
 import { CreateUserComponent } from './create-user/create-user.component';
-import {  RoutingUsuarioModule } from './routing-usuario.module';
+import { RoutingUsuarioModule } from './routing-usuario.module';
 import { InscribirUsuarioCursoComponent } from './inscribir-usuario-curso/inscribir-usuario-curso.component';
-
-
-
+import { AdminCursoComponent } from './admin-cursos/admin-curso.component';
+import { AdminUsuarioComponent } from './admin-usuarios/admin-usuario.component';
 @NgModule({
   declarations: [
     CreateUserComponent,
     InscribirUsuarioCursoComponent,
+    AdminCursoComponent,
+    AdminUsuarioComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +30,8 @@ import { InscribirUsuarioCursoComponent } from './inscribir-usuario-curso/inscri
   exports: [
     CreateUserComponent,
     InscribirUsuarioCursoComponent,
+    AdminCursoComponent,
+    AdminUsuarioComponent,
   ],
 })
-export class UsuarioModule { }
+export class UsuarioModule {}

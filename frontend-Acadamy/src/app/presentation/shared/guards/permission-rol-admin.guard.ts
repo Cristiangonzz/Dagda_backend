@@ -7,7 +7,7 @@ import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-
 @Injectable({
   providedIn: 'root',
 })
-export class PermissionRolGuard implements CanActivate {
+export class PermissionRolAdminGuard implements CanActivate {
   provider = loginUseCaseProviders;
   constructor(
     private readonly router: Router,
@@ -15,8 +15,7 @@ export class PermissionRolGuard implements CanActivate {
     ) {}
   canActivate(): Observable<boolean> {
     return this.provider.hasRolUseCaseProvider
-      .useFactory(this.usuarioService)
-      .execute()
+      .useFactory(this.usuarioService).statusRolEmmit
       .pipe(
         map((status: number) => {
           if (status === 1) {

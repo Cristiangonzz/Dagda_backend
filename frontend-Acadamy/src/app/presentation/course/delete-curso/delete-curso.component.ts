@@ -13,6 +13,7 @@ export class DeleteCursoComponent {
   delegateCurso = cursoUseCaseProviders;
   sweet = new SweetAlert();
 
+  
 
   constructor(
     private cursoService: CursoService,

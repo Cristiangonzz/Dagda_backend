@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUpDateUser } from 'src/app/domain/interfaces/update-user.interface.domain';
 import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-login/delegate-login.infrastructure';
@@ -13,7 +13,7 @@ import { SignInDto } from 'src/app/infrastructure/dto/create/sign-in.dto';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent {
+export class LoginComponent implements AfterViewInit {
   delegateLogin = loginUseCaseProviders;
   delegateUsuario = usuarioUseCaseProviders;
 
@@ -33,6 +33,9 @@ export class LoginComponent {
     private readonly usuarioService: UsuarioService,
     private readonly router: Router
   ) {}
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
+  }
 
   signIn() {
     this.user = this.formLogin.getRawValue() as SignInDto;

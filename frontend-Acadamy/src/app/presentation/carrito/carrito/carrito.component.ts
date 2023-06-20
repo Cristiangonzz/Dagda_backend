@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { cursoUseCaseProviders } from '../../../infrastructure/delegate/delegate-curso/delegate-course.infrastructure';
 import { CursoDomainEntity } from 'src/app/domain/entities/curso.entity.domain';
 import { mercadoPagoUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-Pago/delegate-pago.infrastructure';
@@ -18,7 +18,7 @@ import { IUsuarioTokenDomain } from 'src/app/domain/interfaces/usuario.token.int
   templateUrl: './carrito.component.html',
   styleUrls: ['./carrito.component.css'],
 })
-export class CarritoComponent implements OnInit {
+export class CarritoComponent implements OnInit,AfterViewInit {
   delegateCurso = cursoUseCaseProviders;
   delegateMercadoPago = mercadoPagoUseCaseProviders;
   delegateInscripcion = inscripcionUseCaseProviders;
@@ -32,6 +32,9 @@ export class CarritoComponent implements OnInit {
     private readonly inscripcionService: InscripcionService,
     private router: Router
   ) {}
+  ngAfterViewInit(): void {
+    window.scroll(0,0)
+  }
   ngOnInit(): void {
     this.delegateLogin.hasTokenUserUseCaseUseProvider
       .useFactory()

@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Pipe } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -18,7 +18,7 @@ import { IUsuarioCursoInscripcionDomain } from 'src/app/domain/interfaces/find-u
   templateUrl: './get-curso.component.html',
   styleUrls: ['./get-curso.component.css'],
 })
-export class GetCursoComponent implements OnInit {
+export class GetCursoComponent implements OnInit ,AfterViewInit{
   curso!: CursoDomainEntity;
   delegateCurso = cursoUseCaseProviders;
   delegateInscricion = inscripcionUseCaseProviders;
@@ -52,6 +52,9 @@ export class GetCursoComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
+  }
 
   ngOnInit() {
     this.delegateLogin.hasUserUseCaseProvider.useFactory().execute();

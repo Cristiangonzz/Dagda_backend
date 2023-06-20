@@ -1,3 +1,18 @@
+
+.cardCurso{
+    width: 22.5rem !important;
+}
+
+@media screen  and (max-width: 1020px) {
+    .cardCurso{
+        width: 18.3rem !important;
+    }
+}
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
 .modal {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.5);

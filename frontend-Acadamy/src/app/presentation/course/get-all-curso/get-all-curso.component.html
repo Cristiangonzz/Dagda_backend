@@ -1,101 +1,19 @@
-<div class="page-content page-container" id="page-content">
-  <div class="padding">
-    <div *ngIf="rol === 1" class="card-body">
-      <button class="btn btn-success" (click)="crearCurso()">
-        Crear Curso
-      </button>
-    </div>
 
-
-    <style>
-      .cardCurso{
-          width: 22.5rem !important;
-      }
+<div class="container" style="margin-top: 100px; text-align: center; overflow: auto; padding-bottom: 60px;">
+  <ul class="cards" >
+    <li class="cards__item" *ngFor="let course of courses; let i = index">
+      
+      <div class="card" (click)="curso(course.titulo)">
+        <img [src]="course.imagen" class="card__image card__image--flowers" alt="{{course.imagen}}" *ngIf="course.imagen" style="height: 18rem;width:100%;">
   
-      @media screen  and (max-width: 1020px) {
-          .cardCurso{
-              width: 18.3rem !important;
-          }
-      }
-  
-  </style>
-  
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-12 col-md-12">
-              <div class="container-fluid">
-                  <div class="row" id="contenedorCursos">
-                      
-            <div class="col-12 col-md-4" style="margin-top:30px;" *ngFor="let course of courses; let i = index" >
-              <div class="card cardCurso" style="width: 22.5rem;">
-                  <button (click)="curso(course.titulo)">
-                    <img [src]="course.imagen" class="card-img-top" alt="{{course.imagen}}" *ngIf="course.imagen" style="height: 18rem;width:100%;">
-                    
-                    <!--  
-                      <img [src]="course.imagen" alt="Imagen seleccionada" *ngIf="course.imagen">
-                    -->
-                      <div class="card-body">
-                          <h5 class="card-title">{{course.titulo}}</h5>
-                          <p class="card-text">{{course.descripcion}}</p>
-                      </div>
-                  </button>
-              </div>
-              <div *ngIf="rol === 1" class="card-body">
-                <button class="btn btn-success" (click)="openModal(i)">
-                  Actualizar Curso
-                </button>
-                <button
-                  class="btn btn-danger ms-5"
-                  (click)="deleteCourse( course.titulo)">
-                  Eliminar curso
-                </button>
-              </div>
-            </div>
-          </div>
-            </div>
-                  </div>
-              </div>
-          </div>
+        <div class="card__content">
+          <div class="card__title">{{course.titulo}}</div>
+          <p class="card__text" [innerHTML]="getDescription(course.descripcion!, i)"></p>
+         
+          <button class="btn btn--block card__btn" (click)="curso(course.titulo)">Ver mas</button>
+        </div>
       </div>
+    </li>
+   
+  </ul>
   </div>
-
-<div class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Formulario</h2>
-  </div>
-</div>
-
-<div
-  class="modal fade"
-  [class.show]="showModal"
-  id="exampleModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizar curso</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="closeModal()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- <app-update-course [courseInput]="selected"></app-update-course> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-       

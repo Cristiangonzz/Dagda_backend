@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscription, takeUntil } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -8,17 +8,22 @@ import { CursoDomainEntity } from 'src/app/domain/entities/curso.entity.domain';
 import { cursoUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-curso/delegate-course.infrastructure';
 import { CursoService } from 'src/app/domain/services/curso.service.domain';
 import { UsuarioService } from 'src/app/domain/services/usuario.service.domain';
+import { inscripcionUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-inscripcion/delegate-inscripcion.infrastructure';
+import { InscripcionService } from 'src/app/domain/services/inscripcion.service.domain';
+import { IUsuarioCursoInscripcionDomain } from 'src/app/domain/interfaces/find-usuario-curso-inscripcion.inteface.domain';
+import { IUsuarioTokenDomain } from 'src/app/domain/interfaces/usuario.token.interface.domain';
 
 @Component({
   selector: 'app-get-all-curso',
   templateUrl: './get-all-curso.component.html',
   styleUrls: ['./get-all-curso.component.css'],
 })
-export class GetAllCursoComponent implements OnInit, OnDestroy {
+export class GetAllCursoComponent implements OnInit, OnDestroy ,AfterViewInit  {
   courses!: CursoDomainEntity[];
   urlImagen!: string ;
   delegateCurso = cursoUseCaseProviders;
   delegateLogin = loginUseCaseProviders;
+  delegateInscripcion = inscripcionUseCaseProviders;
   sweet = new SweetAlert();
   private onDestroy$: Subject<void> = new Subject<void>();
   rol!: number;
@@ -42,8 +47,14 @@ export class GetAllCursoComponent implements OnInit, OnDestroy {
   constructor(
     private cursoService: CursoService,
     private usuarioService: UsuarioService,
+    private inscripcionService: InscripcionService,
     private router: Router
   ) {}
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0); // Renderizar hacia arriba de la pantalla
+  }
+
+  
 
   ngOnInit() {
     this.getAllCourseAdmin();
@@ -62,9 +73,21 @@ export class GetAllCursoComponent implements OnInit, OnDestroy {
           }
         },
       });
+      
   }
-
+  user ="";
   curso(titulo: string) {
+    
+    this.delegateLogin
+    .hasTokenUserUseCaseUseProvider.useFactory()
+    .statusTokenEmmit.subscribe({
+      next: (value: IUsuarioTokenDomain) => {
+        this.user = value.usuario?.email!;
+      },
+    });
+
+
+    this.actualizoInscripcion(this.user,titulo);
     this.router.navigate([`/curso/get/${titulo}`]);
   }
 
@@ -84,46 +107,7 @@ export class GetAllCursoComponent implements OnInit, OnDestroy {
         },
       });
   }
-  deleteCourse(_id: string) {
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: 'No podras revertir esta acción',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Si, Eliminar',
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#e64141',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.delegateCurso.deleteCursoUseCaseProvider
-          .useFactory(this.cursoService)
-          .execute(_id)
-          .subscribe({
-            next: () => {
-              this.sweet.toFire(
-                'Curso',
-                'Curso Eliminado Correctamente',
-                'success'
-              );
-              this.refresh();
-              this.router.navigate(['/curso/get-all']);
-            },
-            error: (error) => {
-              this.sweet.toFire('Curso', error.message, 'error');
-            },
-            complete: () => {
-              this.sweet.toFire(
-                'Curso',
-                'Curso Eliminado Correctamente',
-                'success'
-              );
-              this.refresh();
-              this.router.navigate(['/curso/get-all']);
-            },
-          });
-      }
-    });
-  }
+  
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
@@ -138,4 +122,44 @@ export class GetAllCursoComponent implements OnInit, OnDestroy {
       this.cursoService
     ).execute();
   }
+
+  //
+  // Variable para controlar el estado de expansión de la descripción
+expandedDescriptions: boolean[] = [];
+
+// Función para obtener la descripción truncada o expandida según el estado
+getDescription(description: string, index: number): string {
+  if (this.expandedDescriptions[index]) {
+    return description;
+  } else {
+    // Trunca la descripción a una longitud deseada
+    const maxLength = 100;
+    if (description.length > maxLength) {
+      return description.slice(0, maxLength) + '...';
+    } else {
+      return description;
+    }
+  }
+}
+
+// Función para verificar si la descripción está truncada
+isTextOverflow(description: string, index: number): boolean {
+  const maxLength = 100;
+  return description.length > maxLength && !this.expandedDescriptions[index];
+}
+
+// Función para expandir o contraer la descripción al hacer clic en "Ver más"
+expandDescription(index: number): void {
+  this.expandedDescriptions[index] = !this.expandedDescriptions[index];
+}
+
+actualizoInscripcion(email: string, titulo: string){
+ const data : IUsuarioCursoInscripcionDomain = {
+  email: email,
+  titulo: titulo
+ }
+  this.delegateInscripcion.getInscripcionUsuarioCursoUseCaseProvider
+      .useFactory(this.inscripcionService)
+      .execute(data);
+}
 }

@@ -6,7 +6,7 @@ import { loginUseCaseProviders } from 'src/app/infrastructure/delegate/delegete-
 @Injectable({
   providedIn: 'root',
 })
-export class PermissionGuard implements CanActivate {
+export class PermissionLogeadoGuard implements CanActivate {
   provider = loginUseCaseProviders;
   constructor(private readonly router: Router) {}
   canActivate(): Observable<boolean> {

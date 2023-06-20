@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {  GetAllCursoComponent } from './get-all-curso/get-all-curso.component';
-import { PermissionGuard } from '../shared/guards/permission.guard';
-import { PermissionRolGuard } from '../shared/guards/permission-rol.guard';
+import { GetAllCursoComponent } from './get-all-curso/get-all-curso.component';
+import { PermissionLogeadoGuard } from '../shared/guards/permission-logeado.guard';
 import { CreateCursoComponent } from './create-curso/create-curso.component';
 import { GetCursoComponent } from './get-curso/get-curso.component';
+import { PermissionRolAdminGuard } from '../shared/guards/permission-rol-admin.guard';
+import { UpdateCourseComponent } from './update-course/update-course.component';
 
 const routes: Routes = [
   {
@@ -13,22 +14,22 @@ const routes: Routes = [
       {
         path: 'create',
         component: CreateCursoComponent,
-        //canActivate: [PermissionGuard, PermissionRolGuard],
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
       },
-      // {
-      //   path: 'update',
-      //   component: UpdateCourseComponent,
-      //   canActivate: [PermissionGuard, PermissionRolGuard],
-      // },
+      {
+        path: 'update/:titulo',
+        component: UpdateCourseComponent,
+        // canActivate: [PermissionLogeadoGuard],
+      },
       // {
       //   path: 'delete',
       //   component: DeleteCourseComponent,
-      //   canActivate: [PermissionGuard, PermissionRolGuard],
+      //   canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       // },
       {
         path: 'get/:titulo',
         component: GetCursoComponent,
-        //canActivate: [PermissionGuard],
+        //canActivate: [PermissionLogeadoGuard],
       },
       {
         path: 'get-all',
