@@ -37,6 +37,9 @@
       <li *ngIf="!usuarioLogeado" class="nav-item">
         <a class="nav-link" (click)="login()">iniciar sesion</a>
       </li>
+      <li *ngIf="rol > 0 " class="nav-item">
+        <a  class="nav-link" routerLink="referencia/planilla">referencias</a>
+      </li>
       
      
 
@@ -73,10 +76,10 @@
             </span>
           </a>
           <div class="dropdown-menu" style="right: 0;margin-top: 25px;" aria-labelledby="navbarDropdownMenuLink">
-            <a *ngIf="isAdmin" class ="dropdown-item" routerLink="usuario/adminCurso">admin Curso</a>
-            <a  *ngIf="isAdmin" class="dropdown-item" href="#">admin Membresia</a>
-            <a *ngIf="isAdmin" class="dropdown-item" href="#">admin Categoria</a>
-            <a *ngIf="isAdmin" class="dropdown-item" routerLink="usuario/adminUsuario">admin Cliente</a>
+            <a *ngIf="rol == 1" class ="dropdown-item" routerLink="usuario/adminCurso">admin Curso</a>
+            <a  *ngIf="rol == 1" class="dropdown-item" href="#">admin Membresia</a>
+            <a *ngIf="rol == 1" class="dropdown-item" href="#">admin Categoria</a>
+            <a *ngIf="rol == 1" class="dropdown-item" routerLink="usuario/adminUsuario">admin Cliente</a>
             <a class="dropdown-item" href="#">Editar perfil</a>
             <a class="dropdown-item" (click)="out()">salir</a>
           </div>

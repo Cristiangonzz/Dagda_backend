@@ -26,6 +26,9 @@ import { NodeMailerImplementationService } from './services/service-nodemailer/n
 import { mercadoPagoUseCaseProviders } from './delegate/delegate-Pago/delegate-pago.infrastructure';
 import { MercadoPagoService } from '../domain/services/mercado-pago.service.domain';
 import { MercadoPagoImplementationService } from './services/service-mercado-pago/mercado-pago.service.infrastructure';
+import { usuarioReferenciaUseCaseProviders } from './delegate/delegate-usuario-referencia/delegate-usuario-referencia.infrastructure';
+import { UsuarioReferenciaImplementationService } from './services/service-usuario-referencia/usuario.service-referencia.infrastructure';
+import { UsuarioReferenciaService } from '../domain/services/usuario-referente.service.domain';
 
 @NgModule({
   declarations: [],
@@ -38,6 +41,7 @@ import { MercadoPagoImplementationService } from './services/service-mercado-pag
     ...Object.values(membresiaUseCaseProviders),
     ...Object.values(membresiaUsuarioUseCaseProviders),
     ...Object.values(usuarioUseCaseProviders),
+    ...Object.values(usuarioReferenciaUseCaseProviders),
     ...Object.values(nodeMailerUseCaseProviders),
     ...Object.values(mercadoPagoUseCaseProviders),
 
@@ -47,6 +51,7 @@ import { MercadoPagoImplementationService } from './services/service-mercado-pag
     { provide: MembresiaService, useClass: MembresiaImplementationService },
     { provide: MembresiaUsuarioService, useClass: MembresiaUsuarioImplementationService },
     { provide: UsuarioService, useClass: UsuarioImplementationService },
+    { provide: UsuarioReferenciaService, useClass: UsuarioReferenciaImplementationService },
     { provide: NodeMailerService, useClass: NodeMailerImplementationService },
     { provide: MercadoPagoService, useClass: MercadoPagoImplementationService },
   ],

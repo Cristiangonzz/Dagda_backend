@@ -1,5 +1,5 @@
 export interface IUsuarioDomain{
-    id?: string;
+    usuarioId?: string;
     primer_nombre?:string;
     segundo_nombre?:string;
     primer_apellido?:string;

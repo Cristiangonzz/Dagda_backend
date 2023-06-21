@@ -12,7 +12,7 @@
                         <img [src]="curso.imagen" class="card-img-top" alt="{{curso.titulo}}" style="height: 18rem;width:100%;">
                         <div class="card-body">
                             <h5 class="card-title">{{curso.titulo}}</h5>
-                            <p class="card-text" [innerHTML]="curso.descripcion"></p>
+                            
                         </div>
                         <div class="productCart-total">
                           <button class = "cart-btn-individual" (click)="pagarUnidad(curso.precio,curso.titulo!)">Pagar $ {{ curso.precio }}</button>

@@ -1,6 +1,6 @@
 import { IUsuarioDomain } from '../interfaces/usuario.interface.domain';
 export class UsuarioDomainEntity implements IUsuarioDomain {
-  id?: string;
+  usuarioId?: string;
   primer_nombre?: string;
   segundo_nombre?: string;
   primer_apellido?: string;
@@ -16,7 +16,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   vigente?: boolean;
 
   constructor(
-    id?: string,
+    usuarioId?: string,
     primer_nombre?: string,
     segundo_nombre?: string,
     primer_apellido?: string,
@@ -31,7 +31,7 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
     email?: string,
     vigente?: boolean,
   ) {
-    this.id = id as string;
+    this.usuarioId = usuarioId as string;
     this.primer_nombre = primer_nombre as string;
     this.segundo_nombre = segundo_nombre as string;
     this.primer_apellido = primer_apellido as string;

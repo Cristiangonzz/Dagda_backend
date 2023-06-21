@@ -16,6 +16,12 @@ const routes: Routes = [
       import('./presentation/login/login.module').then((m) => m.LoginModule),
   },
   {
+    path: 'referencia',
+   // canActivate: [BackGuard],
+    loadChildren: () =>
+      import('./presentation/usuario-referencia/usuario-referencia.module').then((m) => m.UsuarioReferenciaModule),
+  },
+  {
     path: 'usuario',
     // canActivate: [PermissionLogeadoGuard],
     loadChildren: () =>

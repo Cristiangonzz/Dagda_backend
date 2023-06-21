@@ -4,6 +4,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { InscribirUsuarioCursoComponent } from './inscribir-usuario-curso/inscribir-usuario-curso.component';
 import { AdminCursoComponent } from './admin-cursos/admin-curso.component';
 import { AdminUsuarioComponent } from './admin-usuarios/admin-usuario.component';
+import { PermissionLogeadoGuard } from '../shared/guards/permission-logeado.guard';
+import { PermissionRolAdminGuard } from '../shared/guards/permission-rol-admin.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +17,11 @@ const routes: Routes = [
        // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       },
       {
+        path: `invitacion/:id`,
+        component: CreateUserComponent,
+       // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
+      },
+      {
         path: `inscribir/:tituloCurso`,
         component: InscribirUsuarioCursoComponent,
        // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
@@ -22,12 +29,13 @@ const routes: Routes = [
       {
         path: `adminCurso`,
         component: AdminCursoComponent,
-       // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
+
       },
       {
         path: `adminUsuario`,
         component: AdminUsuarioComponent,
-       // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
       },
 
       { path: `**`, redirectTo: 'create' },
