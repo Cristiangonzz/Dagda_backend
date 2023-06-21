@@ -15,8 +15,6 @@ import { RegistrarUsuarioDto } from '../dto/create/create-usuario.dto';
 import { UsuarioDomainEntity } from 'src/domain/entities/usuario.entity.domain';
 import { UpdateUsuarioDto } from '../dto/create/update-usuario.dto';
 import { SignInDto } from '../dto/create/sign-in.dto';
-import { SendEmailDto } from '../dto/create/send-email.dto';
-import { transporter } from '../../config/mailer-prueba';
 
 @ApiTags('usuario')
 @Controller('usuario')

@@ -1,5 +1,5 @@
 import { UsuarioDomainEntity } from 'src/domain/entities/usuario.entity.domain';
-import { Column, Entity, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { MembresiaUsuarioMySqlEntity } from './membresia-usuario-mysql.entity';
 import { IncripcionMySqlEntity } from './incripcion-mysql.entity';
 

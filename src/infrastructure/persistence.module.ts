@@ -15,6 +15,8 @@ import { IncripcionController } from './controllers/incripcion.controller';
 import { MembresiaUsuarioService } from './services/membresia-usuario.service';
 import { NodeMailerController } from './controllers/nodemailer.controller';
 import { NodeMailerService } from './services/nodemailer.service';
+import { UsuarioReferenciaService } from './services/usuario-referencia.service';
+import { UsuarioReferenciaController } from './controllers/usuario-referencia.controller';
 
 @Module({
   imports: [MySqlModule],
@@ -26,6 +28,7 @@ import { NodeMailerService } from './services/nodemailer.service';
     MembresiaUsuarioController,
     IncripcionController,
     NodeMailerController,
+    UsuarioReferenciaController,
   ],
   providers: [
     NodeMailerService,
@@ -36,6 +39,7 @@ import { NodeMailerService } from './services/nodemailer.service';
     MembresiaUsuarioService,
     UsuarioService,
     IncripcionService,
+    UsuarioReferenciaService,
     
       
 ],
@@ -48,6 +52,7 @@ import { NodeMailerService } from './services/nodemailer.service';
     MembresiaUsuarioService,
     UsuarioService,
     IncripcionService,
+    UsuarioReferenciaService,
 
   ],
 })

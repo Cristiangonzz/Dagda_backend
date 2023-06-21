@@ -11,8 +11,14 @@ export class UsuarioReferenciaRepository implements IRepository<UsuarioReferenci
     @InjectRepository(UsuarioReferenciaMySqlEntity)
     private readonly usuarioReferenciaRepository: Repository<UsuarioReferenciaMySqlEntity>,
   ) {}
-  findByNombre(nombre: string): Observable<UsuarioReferenciaMySqlEntity> {
-    throw new Error('Method not implemented.');
+  
+  //En toda la tabla de referencia el usuario referido puede estar una unica vez
+  findByNombre(usu_referido: string): Observable<UsuarioReferenciaMySqlEntity> {
+    return from(this.usuarioReferenciaRepository.findOneBy({ usu_referido })).pipe(
+      catchError((err: Error) => {
+        throw new NotFoundException("Usuario no encontrado",err.message);
+      }),
+    );
   }
 
   findAll(): Observable<UsuarioReferenciaMySqlEntity[]> {
@@ -32,6 +38,7 @@ export class UsuarioReferenciaRepository implements IRepository<UsuarioReferenci
   }
 
   create(entity: UsuarioReferenciaMySqlEntity): Observable<UsuarioReferenciaMySqlEntity> {
+    console.log(entity);
     return from(this.usuarioReferenciaRepository.save(entity));
   }
 

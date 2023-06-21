@@ -11,10 +11,14 @@ export class UsuarioReferenciaMySqlService
   constructor(
     private readonly usuarioReferenciaRepository: UsuarioReferenciaRepository,
   ) {}
+  findEmailReferido(id: string): Observable<UsuarioReferenciaMySqlEntity> {
+    return this.usuarioReferenciaRepository.findByNombre(id);
+  }
 
   register(
     entity: UsuarioReferenciaMySqlEntity,
   ): Observable<UsuarioReferenciaMySqlEntity> {
+    console.log('service', entity);
     return this.usuarioReferenciaRepository.create(entity);
   }
   update(
