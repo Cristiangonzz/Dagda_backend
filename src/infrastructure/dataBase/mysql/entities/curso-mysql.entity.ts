@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { CategoriaMySqlEntity } from './categoria-mysql.entity';
 import { IncripcionMySqlEntity } from './incripcion-mysql.entity';
+import { IProgramaCursoDomain } from 'src/domain/interfaces/programa-curso.interface.domain';
 
 @Entity('curso', { schema: 'public' })
 export class CursoMySqlEntity extends CursoDomainEntity {
@@ -31,6 +32,11 @@ export class CursoMySqlEntity extends CursoDomainEntity {
   precio?: number;
   @Column()
   vigente?: boolean;
+  
+  @Column({ type: 'json', nullable: true })
+  programa?: IProgramaCursoDomain[];
+//al hacer la consulta a la base de datos tengo que convertir 
+//const programaCurso: IProgramaCursoDomain[] = JSON.parse(curso.programa);
 
   @ManyToOne(() => CategoriaMySqlEntity, (categoria) => categoria.curso, {
     cascade: ['insert', 'update', 'remove'],

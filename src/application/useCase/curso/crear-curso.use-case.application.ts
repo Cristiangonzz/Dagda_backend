@@ -5,6 +5,7 @@ import { ICategoriaDomainService } from 'src/domain/services/categoria.service.d
 import { ICursoDomainService } from 'src/domain/services/curso.service.domain';
 import { CrearCursoDto } from 'src/infrastructure/dto/create/create-curso.dto';
 import { GetNombreCategoriaUseCase } from '../categoria/get-nombre-categoria.use-case.application copy';
+import { IProgramaCursoDomain } from '../../../domain/interfaces/programa-curso.interface.domain';
 
 
 
@@ -18,10 +19,18 @@ export class CrearCursoUseCase {
 
   execute(data: CrearCursoDto): Observable<CursoDomainEntity> {
     const newCurso = new CursoDomainEntity();
+    let newCategoria: IProgramaCursoDomain[] = [];
     const caseCategoria = new GetNombreCategoriaUseCase(this.categoriaService);
     //Guardar imagen en el servidor
-    
-
+    if(data.tituloPrograma){
+      data.tituloPrograma.forEach((element, index) => {
+        newCategoria.push({
+          tituloPrograma: element,
+          descripcionPrograma: data.descripcionPrograma[index],
+        });
+      });
+      newCurso.programa = newCategoria;
+    }
     return caseCategoria.execute(data.categoria).pipe(
       map((value: CategoriaDomainEntity) => {
         if (value) {
@@ -31,6 +40,7 @@ export class CrearCursoUseCase {
           newCurso.detalle = data.detalle;
           newCurso.precio = data.precio;
           newCurso.categoria = value;
+         
           return newCurso;
         } else {
           throw new Error('No se encontro la categoria');
