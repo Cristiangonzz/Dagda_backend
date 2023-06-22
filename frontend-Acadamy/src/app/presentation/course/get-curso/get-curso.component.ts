@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, OnInit, Pipe } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  OnInit,
+  Pipe,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -18,7 +24,7 @@ import { IUsuarioCursoInscripcionDomain } from 'src/app/domain/interfaces/find-u
   templateUrl: './get-curso.component.html',
   styleUrls: ['./get-curso.component.css'],
 })
-export class GetCursoComponent implements OnInit ,AfterViewInit{
+export class GetCursoComponent implements OnInit, AfterViewInit {
   curso!: CursoDomainEntity;
   delegateCurso = cursoUseCaseProviders;
   delegateInscricion = inscripcionUseCaseProviders;
@@ -27,23 +33,12 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
   rol: boolean = false;
   usuarioLogeado: boolean = false;
   selected!: CursoDomainEntity;
-  showModal = false;
   suscription!: Subscription;
 
   tituloCurso: string = '';
   usuarioActual: string = '';
 
   suscripto: boolean = false;
-
-  openModal() {
-    this.selected = this.curso;
-    console.log(this.selected);
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
-  }
 
   constructor(
     private cursoService: CursoService,
@@ -55,8 +50,9 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
   ngAfterViewInit(): void {
     window.scrollTo(0, 0);
   }
-
+ 
   ngOnInit() {
+    this.actualizarCarrito();
     this.delegateLogin.hasUserUseCaseProvider.useFactory().execute();
     this.delegateLogin.hasUserUseCaseProvider
       .useFactory()
@@ -85,9 +81,12 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
   }
 
   getCurso() {
+    
     const titulo = this.activatedRoute.snapshot.params['titulo'];
     this.getUsuario();
-    this.getInscripcion(this.usuarioActual, titulo);
+    this.actualizarUsuarioInscripto();
+
+    // this.getInscripcion(this.usuarioActual, titulo);
     this.delegateCurso.GetCursoByNameUseCaseProvider.useFactory(
       this.cursoService
     )
@@ -95,6 +94,7 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
       .subscribe({
         next: (value: CursoDomainEntity) => {
           this.curso = value;
+        
         },
         error: () => {
           this.sweet.toFire('Curso', 'Error al Obtener Curso', 'error');
@@ -113,37 +113,34 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
     }
   }
 
-  agregarCursoCarrito(curso: CursoDomainEntity) {
-    this.delegateCurso.AgregarCursoCarritoUseCaseProvider.useFactory().execute(
-      curso
-    );
+  actualizarCarrito() {
+    this.delegateCurso.AgregarCursoCarritoUseCaseProvider.useFactory(
+      this.inscripcionService
+    ).execute();
+  }
+  carrito(){
+    this.router.navigate(['/carrito/canasta']);
+  }
+  actualizarUsuarioInscripto() {
+    this.suscripto = false;
+    this.delegateCurso.AgregarCursoCarritoUseCaseProvider.useFactory(
+      this.inscripcionService
+    ).cursosCarritoEmmit.subscribe({
+      next: (value: CursoDomainEntity[]) => {
+        if(value){
+          value.forEach((curso) => {
+            if (curso.titulo == this.curso.titulo) {
+              this.suscripto = true;
+            }
+          }
+          );
+        }
+      }
+    });
   }
 
-  getInscripcion(email: string, tituloCurso: string) {
-    const data: IUsuarioCursoInscripcionDomain = {
-      email: email,
-      titulo: tituloCurso,
-    };
-    this.delegateInscricion.getInscripcionUsuarioCursoUseCaseProvider
-      .useFactory(this.inscripcionService)
-      .execute(data);
-    this.delegateInscricion.getInscripcionUsuarioCursoUseCaseProvider
-      .useFactory(this.inscripcionService)
-      .inscriptoEmmit.subscribe({
-        next: (value: boolean) => {
-          console.log('Inscripto es : ', value);
-          this.suscripto = value;
-        },
-        error: () => {
-          this.suscripto = false;
-          this.sweet.toFire(
-            'Inscripcion',
-            'Error al Obtener Inscripcion',
-            'error'
-          );
-        },
-      });
-  }
+
+
 
   getUsuario() {
     this.delegateLogin.hasTokenUserUseCaseUseProvider.useFactory().execute();
@@ -155,43 +152,5 @@ export class GetCursoComponent implements OnInit ,AfterViewInit{
         },
       });
   }
-  deleteCourse(titulo: string) {
-    Swal.fire({
-      title: '¿Estas seguro?',
-      text: 'No podras revertir esta acción',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Si, Eliminar',
-      cancelButtonText: 'Cancelar',
-      confirmButtonColor: '#e64141',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.delegateCurso.deleteCursoUseCaseProvider
-          .useFactory(this.cursoService)
-          .execute(titulo)
-          .subscribe({
-            next: () => {
-              this.sweet.toFire(
-                'Curso',
-                'Curso Eliminado Correctamente',
-                'success'
-              );
-
-              this.router.navigate(['/curso/get-all']);
-            },
-            error: (error) => {
-              this.sweet.toFire('Curso', error.message, 'error');
-            },
-            complete: () => {
-              this.sweet.toFire(
-                'Curso',
-                'Curso Eliminado Correctamente',
-                'success'
-              );
-              this.router.navigate(['/curso/get-all']);
-            },
-          });
-      }
-    });
-  }
+  
 }

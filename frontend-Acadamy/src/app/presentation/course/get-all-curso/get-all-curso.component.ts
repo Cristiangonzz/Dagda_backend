@@ -57,6 +57,9 @@ export class GetAllCursoComponent implements OnInit, OnDestroy ,AfterViewInit  {
   
 
   ngOnInit() {
+    this.actualizarCarrito()
+
+
     this.getAllCourseAdmin();
     this.delegateLogin.hasRolUseCaseProvider
       .useFactory(this.usuarioService)
@@ -123,7 +126,11 @@ export class GetAllCursoComponent implements OnInit, OnDestroy ,AfterViewInit  {
     ).execute();
   }
 
-  //
+  actualizarCarrito() {
+    this.delegateCurso.AgregarCursoCarritoUseCaseProvider.useFactory(
+      this.inscripcionService
+    ).execute();
+  }
   // Variable para controlar el estado de expansión de la descripción
 expandedDescriptions: boolean[] = [];
 

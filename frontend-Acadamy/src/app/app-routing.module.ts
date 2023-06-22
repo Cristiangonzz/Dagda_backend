@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BackGuard } from './presentation/shared/guards/back.guard';
-import { PermissionLogeadoGuard } from './presentation/shared/guards/permission-logeado.guard';
 
 const routes: Routes = [
   {
@@ -56,6 +55,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./presentation/carrito/carrito.module').then(
         (m) => m.CarritoModule
+      ),
+  },
+  {
+    path: 'categoria',
+    loadChildren: () =>
+      import('./presentation/categoria/categoria.module').then(
+        (m) => m.CategoriaModule
       ),
   },
   {

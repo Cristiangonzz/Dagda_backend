@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PermissionLogeadoGuard } from '../shared/guards/permission-logeado.guard';
-import { CreateMembresiaUsuarioComponent } from './crear-membresia-usuario/create-membresia-usuario.component';
-import { GetMembresiaUsuarioComponent } from './get-membresia-usuario/get-membresia-usuario.component';
 import { PermissionRolAdminGuard } from '../shared/guards/permission-rol-admin.guard';
+import { CreateCategoriaComponent } from './create/create-categoria.component';
+import { TablaCategoriaComponent } from './tabla/tabla-categoria.component';
+
 const routes: Routes = [
   {
     path: '',
     children: [
+     
       {
-        path: `create/:nombreMembresia/:posicionMembresia/:usuarioActual`,
-        component: CreateMembresiaUsuarioComponent,
+        path: `create`,
+        component: CreateCategoriaComponent,
         canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
-      },
 
+      },
       {
-        path: `get/:id`,
-        component: GetMembresiaUsuarioComponent,
-        canActivate: [PermissionLogeadoGuard],
-      },
+        path: `get-all`,
+        component: TablaCategoriaComponent,
+        canActivate: [PermissionLogeadoGuard, PermissionRolAdminGuard],
 
+      },
       { path: `**`, redirectTo: 'get-all' },
     ],
   },
@@ -29,4 +31,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class RoutingMembresiaUsuarioModule {}
+export class RoutingCategoriaModule {}

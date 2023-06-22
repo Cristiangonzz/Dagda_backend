@@ -1,5 +1,6 @@
 import { ICategoriaDomain } from '../interfaces/categoria.inteface.domain';
 import { ICursoDomain } from '../interfaces/curso.interface.domain';
+import { IProgramaCursoDomain } from '../interfaces/programa-curso.interface.domain';
 import { ISubCategoriaDomain } from '../interfaces/sub-categoria.inteface.domain';
 
 export class CursoDomainEntity implements ICursoDomain {
@@ -10,9 +11,10 @@ export class CursoDomainEntity implements ICursoDomain {
   descripcion?: string;
   categoria: ICategoriaDomain;
   subCategoria?: ISubCategoriaDomain;
-  vigente? : boolean;
+  vigente?: boolean;
   detalle?: string;
-  precio?: number;
+  precio: number;
+  programa: IProgramaCursoDomain[];
 
   constructor(
     cursoId?: string,
@@ -26,6 +28,7 @@ export class CursoDomainEntity implements ICursoDomain {
     vigente?: boolean,
     detalle?: string,
     precio?: number,
+    programa?: IProgramaCursoDomain[]
   ) {
     this.cursoId = cursoId as string;
     this.fecha_creada = fecha_creada as string | number | Date;
@@ -37,5 +40,6 @@ export class CursoDomainEntity implements ICursoDomain {
     this.vigente = vigente as boolean;
     this.detalle = detalle as string;
     this.precio = precio as number;
+    this.programa = programa as IProgramaCursoDomain[];
   }
 }

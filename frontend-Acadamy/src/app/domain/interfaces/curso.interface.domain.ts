@@ -1,4 +1,5 @@
 import { ICategoriaDomain } from "./categoria.inteface.domain";
+import { IProgramaCursoDomain } from "./programa-curso.interface.domain";
 import { ISubCategoriaDomain } from "./sub-categoria.inteface.domain";
 
 export interface ICursoDomain {
@@ -11,5 +12,6 @@ export interface ICursoDomain {
   subCategoria?: ISubCategoriaDomain;
   vigente?: boolean;
   detalle?: string;
-  precio?: number;
+  precio: number;
+  programa: IProgramaCursoDomain[];
 }

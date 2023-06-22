@@ -5,30 +5,28 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { InfrastructureModule } from 'src/app/infrastructure/infrastructure.module';
-import { GetMembresiaUsuarioComponent } from './get-membresia-usuario/get-membresia-usuario.component';
-import { CreateMembresiaUsuarioComponent } from './crear-membresia-usuario/create-membresia-usuario.component';
-import { RoutingMembresiaUsuarioModule } from './routing-membresia-usuario.module';
+import { CreateCategoriaComponent } from './create/create-categoria.component';
+import { RoutingCategoriaModule } from './routing-categoria.module';
+import { TablaCategoriaComponent } from './tabla/tabla-categoria.component';
 
 @NgModule({
   declarations: [
-    CreateMembresiaUsuarioComponent,
-    GetMembresiaUsuarioComponent,
-  
+    CreateCategoriaComponent,
+    TablaCategoriaComponent,
   ],
   imports: [
-    CommonModule,
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RoutingMembresiaUsuarioModule,
-    InfrastructureModule,
     SharedModule,
+    RoutingCategoriaModule,
+    InfrastructureModule,
   ],
   exports: [
-    CreateMembresiaUsuarioComponent,
-    GetMembresiaUsuarioComponent,
+    CreateCategoriaComponent,
+    TablaCategoriaComponent,
   ],
 })
-export class MembresiaUsuarioModule {}
+export class CategoriaModule {}

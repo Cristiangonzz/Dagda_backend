@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CursoDomainEntity } from 'src/app/domain/entities/curso.entity.domain';
 import { IUsuarioTokenDomain } from 'src/app/domain/interfaces/usuario.token.interface.domain';
+import { InscripcionService } from 'src/app/domain/services/inscripcion.service.domain';
 import { UsuarioService } from 'src/app/domain/services/usuario.service.domain';
 import { cursoUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-curso/delegate-course.infrastructure';
 import { usuarioUseCaseProviders } from 'src/app/infrastructure/delegate/delegate-usuario/delegate-usuario.infrastructure';
@@ -23,9 +24,14 @@ export class NavbarComponent implements OnInit {
   cursosCarrito: CursoDomainEntity[] = [];
 
   usuarioLogeado: boolean = false;
-  constructor(private router: Router, private usuarioService: UsuarioService) {}
+  constructor(
+    private router: Router, 
+    private usuarioService: UsuarioService,
+    private inscripcionService: InscripcionService,
+    ) {}
 
   ngOnInit(): void {
+    
     this.logeado();
     this.actualizarRol();
     this.actualizarUsuario();
@@ -66,6 +72,7 @@ export class NavbarComponent implements OnInit {
   }
   out() {
     localStorage.clear();
+    this.actualizarRol();
     this.delegateLogin.hasUserUseCaseProvider.useFactory().execute();
     this.router.navigate(['/home']);
   }
@@ -87,7 +94,7 @@ export class NavbarComponent implements OnInit {
   }
   cantidadCursoCarrito() {
     this.delegateCurso.AgregarCursoCarritoUseCaseProvider
-    .useFactory()
+    .useFactory(this.inscripcionService)
     .cursosCarritoEmmit.subscribe((data: CursoDomainEntity[]) => {
       this.cursosCarrito = data;
     }

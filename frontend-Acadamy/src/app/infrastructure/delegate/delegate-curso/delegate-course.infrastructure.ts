@@ -8,6 +8,7 @@ import { GetImagenCursoUseCase } from "src/app/application/use-case/curso/get-im
 import { GuardarImagenCursoUseCase } from "src/app/application/use-case/curso/guardar-imagen-curso.use-case";
 import { UpdateCursoUseCase } from "src/app/application/use-case/curso/update-curso.use-case";
 import { CursoService } from "src/app/domain/services/curso.service.domain";
+import { InscripcionService } from "src/app/domain/services/inscripcion.service.domain";
 
 const CreateCursoUseCaseFactory = (() => {
   let instance: CreateCursoUseCase;
@@ -27,9 +28,9 @@ const CreateCursoUseCaseFactory = (() => {
 const AgregarCursoCarritoUseCaseFactory = (() => {
   let instance: AgregarCursoCarritoUseCase;
 
-  const factory = (): AgregarCursoCarritoUseCase => {
+  const factory = (service: InscripcionService): AgregarCursoCarritoUseCase => {
     if (!instance) {
-      instance = new AgregarCursoCarritoUseCase();
+      instance = new AgregarCursoCarritoUseCase(service);
     }
 
     return instance;
@@ -172,7 +173,7 @@ export const cursoUseCaseProviders = {
   AgregarCursoCarritoUseCaseProvider: {
     provide: AgregarCursoCarritoUseCase,
     useFactory: AgregarCursoCarritoUseCaseFactory,
-    deps: [],
+    deps: [InscripcionService],
   },
 //Funciones de imagenes
   GuardarImagenCursoUseProvider: {

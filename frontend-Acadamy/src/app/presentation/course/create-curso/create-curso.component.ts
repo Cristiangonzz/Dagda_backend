@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SweetAlert } from '../../shared/sweetAlert/sweet-alert.presentation';
 import { UsuarioService } from 'src/app/domain/services/usuario.service.domain';
@@ -30,10 +30,12 @@ export class CreateCursoComponent implements OnInit ,AfterViewInit{
   FormRegister = new FormGroup({
     titulo: new FormControl('', [Validators.required, Validators.minLength(1)]),
     descripcion: new FormControl(''),
-    // imagen: new FormControl(null, [Validators.required]),
     categoria: new FormControl('', [Validators.required]),
     detalle: new FormControl(''),
     precio: new FormControl<number>(0, [Validators.required]),
+    tituloPrograma: new FormArray([], [Validators.required]),
+    descripcionPrograma: new FormArray([], [Validators.required]),
+    
   });
  
   curso: CrearCursoDto = {} as CrearCursoDto;
@@ -49,6 +51,7 @@ export class CreateCursoComponent implements OnInit ,AfterViewInit{
   }
 
   ngOnInit(): void {
+    this.addContenidoPrograma();
     this.delegateCategoria.getAllCategoriaUseCaseProvider
       .useFactory(this.categoriaService)
       .execute();
@@ -85,17 +88,41 @@ export class CreateCursoComponent implements OnInit ,AfterViewInit{
       });
   }
  
+  addContenidoPrograma() {
+    const titulo = new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]);
+    const descripcion = new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+    ]);
+    this.tituloProgramaForms.push(titulo);
+    this.descripcionProgramaForms.push(descripcion);
+  }
 
+  removeContenidoPrograma(i: number) {
+    this.tituloProgramaForms.removeAt(i);
+    this.descripcionProgramaForms.removeAt(i);
+  }
+
+  get tituloProgramaForms() {
+    return this.FormRegister.get('tituloPrograma') as FormArray;
+  }
+  get descripcionProgramaForms() {
+    return this.FormRegister.get('descripcionPrograma') as FormArray;
+  }
   send() {
   
     this.curso.descripcion = this.FormRegister.get('descripcion')
       ?.value as string;
     this.curso.precio = this.FormRegister.get('precio')?.value as number;
     this.curso.detalle = this.FormRegister.get('detalle')?.value as string;
-    //this.curso.imagen = this.imageData;
+    this.curso.tituloPrograma = this.FormRegister.get('tituloPrograma')?.value as string[];
+    this.curso.descripcionPrograma = this.FormRegister.get('descripcionPrograma')?.value as string[];
     this.curso.categoria = this.FormRegister.get('categoria')?.value as string;
     this.curso.titulo = this.FormRegister.get('titulo')?.value as string;
-
+console.log(this.curso);
     this.delegateCurso.CreateCursoUseCaseProvider.useFactory(this.cursoService)
       .execute(this.curso)
       .subscribe({

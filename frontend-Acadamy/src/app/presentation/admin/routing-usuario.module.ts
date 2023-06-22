@@ -14,12 +14,10 @@ const routes: Routes = [
       {
         path: `registrar`,
         component: CreateUserComponent,
-       // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       },
       {
         path: `invitacion/:id`,
         component: CreateUserComponent,
-       // canActivate: [PermissionLogeadoGuard, PermissionRolGuard],
       },
       {
         path: `inscribir/:tituloCurso`,

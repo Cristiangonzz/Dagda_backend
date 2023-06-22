@@ -29,7 +29,7 @@ const routes: Routes = [
       {
         path: `update`,
         component: UpdateMembresiaComponent,
-        // canActivate: [PermissionLogeadoGuard,PermissionRolGuard],
+         canActivate: [PermissionLogeadoGuard,PermissionRolAdminGuard],
       },
       { path: `**`, redirectTo: 'get-all' },
     ],

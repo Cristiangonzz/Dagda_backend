@@ -83,7 +83,7 @@ export class InscribirUsuarioCursoComponent implements OnInit {
   agregarCursoCarrito(curso : CursoDomainEntity){
     this.delegateCurso
     .AgregarCursoCarritoUseCaseProvider
-    .useFactory().execute(curso);
+    .useFactory(this.inscripcionService).execute();
   }
   getUsuario() {
     this.delegateLogin.hasTokenUserUseCaseUseProvider
