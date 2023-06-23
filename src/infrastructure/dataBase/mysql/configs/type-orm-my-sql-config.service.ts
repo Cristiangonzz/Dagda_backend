@@ -20,13 +20,13 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
     connectionName?: string,
   ): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     return {
-      type: 'mysql',
+      type: 'mariadb',
       name: connectionName,
       host: 'localhost', //this.configService.get<string>('DB_HOST'), //
       port: 3306, //this.configService.get<number>('DB_PORT'), //3306,//
-      username: 'root', // this.configService.get<string>('DB_USER'),//'cristian',//
-      password: '', //this.configService.get<string>('DB_PASSWORD'), //
-      database: 'dagda', //this.configService.get<string>('DB_NAME'), //
+      username: 'cristian', // this.configService.get<string>('DB_USER'),//'cristian',//
+      password: 'knyZ1359&', //this.configService.get<string>('DB_PASSWORD'), //
+      database: 'dagdaAcademy', //this.configService.get<string>('DB_NAME'), //
       entities: [
         CategoriaMySqlEntity,
         CursoMySqlEntity,
