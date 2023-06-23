@@ -39,7 +39,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
         NodeMailerMySqlEntity,
         imagenMySqlEntity,
       ],
-      synchronize: false,
+      synchronize: true,
     };
   }
 }
