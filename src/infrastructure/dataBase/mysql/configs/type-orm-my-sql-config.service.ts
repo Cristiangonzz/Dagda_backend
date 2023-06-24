@@ -20,7 +20,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
     connectionName?: string,
   ): TypeOrmModuleOptions | Promise<TypeOrmModuleOptions> {
     return {
-      type: 'mariadb',
+      type: 'mysql',
       name: connectionName,
       host: 'localhost', //this.configService.get<string>('DB_HOST'), //
       port: 3306, //this.configService.get<number>('DB_PORT'), //3306,//
@@ -39,7 +39,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
         NodeMailerMySqlEntity,
         imagenMySqlEntity,
       ],
-      synchronize: true,
+      synchronize: false,
     };
   }
 }
