@@ -43,7 +43,7 @@ async function bootstrap() {
   app.use('/images', express.static('images'));
  
   app.enableCors({
-    origin:"https://corpdagda.com",// CORS_ORIGIN,
+    origin: "*",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true
   });
