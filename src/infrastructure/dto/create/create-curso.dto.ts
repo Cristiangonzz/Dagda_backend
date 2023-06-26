@@ -31,12 +31,14 @@ export class CrearCursoDto {
   //programa
   @ApiProperty()
   @IsOptional()
- // @IsString({ each: true })
+  @IsArray()
+  @IsString({ each: true })
   tituloPrograma?: string[];
 
   @ApiProperty()
   @IsOptional()
- // @IsString({ each: true })
+  @IsArray()
+  @IsString({ each: true })
   descripcionPrograma?: string[];
 
 }

@@ -22,7 +22,7 @@ import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 const path = require('path');
-import { dirname, extname, join } from 'path';
+
 @ApiTags('curso')
 @Controller('curso')
 export class CursoController {
