@@ -1,4 +1,4 @@
-import { IsString, IsNumber } from 'class-validator';
+import { IsString, IsNumber, ArrayMinSize } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CrearCursoDto {
@@ -27,11 +27,13 @@ export class CrearCursoDto {
   precio: number;
   //programa
   @ApiProperty()
-  @IsString()
+  @ArrayMinSize(1)
+  @IsString({each : true})
   tituloPrograma?: string[];
 
   @ApiProperty()
-  @IsString()
+  @ArrayMinSize(1)
+  @IsString({each : true})
   descripcionPrograma?: string[];
 
 }
