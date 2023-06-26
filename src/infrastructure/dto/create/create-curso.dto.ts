@@ -3,42 +3,42 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CrearCursoDto {
   @ApiProperty()
-  @IsString()
+ // @IsString()
   titulo: string;
 
   @ApiProperty()
-  @IsString()
+ // @IsString()
   @IsOptional()
   imagen?: string;
 
   @ApiProperty()
-  @IsString()
+ // @IsString()
   @IsOptional()
   descripcion?: string;
 
   @ApiProperty()
-  @IsString()
+ // @IsString()
   categoria: string;
 
   @ApiProperty()
-  @IsString()
+ // @IsString()
   @IsOptional()
   detalle?: string;
 
   @ApiProperty()
-  @IsNumber()
+ // @IsNumber()
   precio: number;
   //programa
   @ApiProperty()
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
+  // @IsArray()
+  // @IsString({ each: true })
   tituloPrograma?: string[];
 
   @ApiProperty()
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
+  // @IsArray()
+  // @IsString({ each: true })
   descripcionPrograma?: string[];
 
 }
