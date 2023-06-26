@@ -27,7 +27,7 @@ import {
     @ApiProperty()
     @IsNumber()
     @IsPositive()
-    telefono?: string;
+    telefono?: number;
   
     @ApiProperty()
     @IsString()
