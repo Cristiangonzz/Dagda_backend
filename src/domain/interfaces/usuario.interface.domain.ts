@@ -5,7 +5,7 @@ export interface IUsuarioDomain{
     primer_apellido?:string;
     segundo_apellido?:string;
     cod_telefono?: string;
-    telefono?: string;
+    telefono?: number;
     usuario?: string;
     foto?: string;
     tipo_usuario?: number; 

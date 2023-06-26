@@ -24,7 +24,7 @@ export class UsuarioMySqlEntity extends UsuarioDomainEntity {
   cod_telefono?: string;
 
   @Column({unique: true})
-  telefono?: string;
+  telefono?: number;
 
   @Column({unique: true})
   usuario?: string;
