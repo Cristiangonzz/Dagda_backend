@@ -1,4 +1,4 @@
-import {  IsEmail, IsNumber, IsPositive, IsString } from "class-validator";
+import {  IsEmail, IsNumber, IsOptional, IsPositive, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class RegistrarUsuarioDto {
@@ -9,6 +9,7 @@ export class RegistrarUsuarioDto {
     
     @ApiProperty()
     @IsString()
+    @IsOptional()
     segundo_nombre?: string;
 
     @ApiProperty()
@@ -17,6 +18,7 @@ export class RegistrarUsuarioDto {
 
     @ApiProperty()
     @IsString()
+    @IsOptional()
     segundo_apellido?: string;
 
     @ApiProperty()
@@ -27,6 +29,7 @@ export class RegistrarUsuarioDto {
     
     @ApiProperty()
     @IsString()
+    @IsOptional()
     foto?: string;
 
     @ApiProperty()
