@@ -9,7 +9,6 @@ export class RegistrarUsuarioDto {
     
     @ApiProperty()
     @IsString()
-    @IsOptional()
     segundo_nombre?: string;
 
     @ApiProperty()
@@ -18,7 +17,6 @@ export class RegistrarUsuarioDto {
 
     @ApiProperty()
     @IsString()
-    @IsOptional()
     segundo_apellido?: string;
 
     @ApiProperty()
@@ -29,7 +27,6 @@ export class RegistrarUsuarioDto {
     
     @ApiProperty()
     @IsString()
-    @IsOptional()
     foto?: string;
 
     @ApiProperty()
