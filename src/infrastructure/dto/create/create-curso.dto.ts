@@ -27,13 +27,13 @@ export class CrearCursoDto {
   precio: number;
   //programa
   @ApiProperty()
-  @ArrayMinSize(1)
-  @IsString({each : true})
+  // @ArrayMinSize(1)
+  // @IsString({each : true})
   tituloPrograma?: string[];
 
-  @ApiProperty()
-  @ArrayMinSize(1)
-  @IsString({each : true})
+   @ApiProperty()
+  // @ArrayMinSize(1)
+  // @IsString({each : true})
   descripcionPrograma?: string[];
 
 }
