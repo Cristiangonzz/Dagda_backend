@@ -11,7 +11,12 @@ import { UsuarioReferenciaMySqlEntity } from '../entities/usuario-referente-mysq
 import { IncripcionMySqlEntity } from '../entities/incripcion-mysql.entity';
 import { NodeMailerMySqlEntity } from '../entities/nodemailer-mysql.entity';
 import { imagenMySqlEntity } from '../entities/imagen-mysql';
-
+import {
+  MYSQLCLAVE,
+  MYSQLHOST,
+  MYSQLNOMBREDATEBASE,
+  MYSQLPORT,
+  MYSQLUSER} from "../../../../config/config";
 @Injectable()
 export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
@@ -22,11 +27,11 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
     return {
       type: 'mysql',
       name: connectionName,
-      host: 'localhost', //this.configService.get<string>('DB_HOST'), //
-      port: 3306, //this.configService.get<number>('DB_PORT'), //3306,//
-      username: 'cristian', // this.configService.get<string>('DB_USER'),//'cristian',//
-      password: 'knyZ1359&', //this.configService.get<string>('DB_PASSWORD'), //
-      database: 'dagdaAcademy', //this.configService.get<string>('DB_NAME'), //
+      host: MYSQLHOST,
+      port: MYSQLPORT, //this.configService.get<number>('DB_PORT'), //3306,//
+      username: MYSQLUSER, // this.configService.get<string>('DB_USER'),//'cristian',//
+      password: MYSQLCLAVE, //this.configService.get<string>('DB_PASSWORD'), //
+      database: MYSQLNOMBREDATEBASE, //this.configService.get<string>('DB_NAME'), //
       //--------------------------------------------------------------------
       // type: 'mysql',
       // name: connectionName,
