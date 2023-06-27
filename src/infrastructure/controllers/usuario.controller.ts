@@ -15,6 +15,7 @@ import { RegistrarUsuarioDto } from '../dto/create/create-usuario.dto';
 import { UsuarioDomainEntity } from 'src/domain/entities/usuario.entity.domain';
 import { UpdateUsuarioDto } from '../dto/create/update-usuario.dto';
 import { SignInDto } from '../dto/create/sign-in.dto';
+import { GetEmailUsuarioDTO } from '../dto/get/get-email-usuario.dto';
 
 @ApiTags('usuario')
 @Controller('usuario')
@@ -50,8 +51,8 @@ export class UsuarioController {
     return this.useCase.execute(id);
   }
   @ApiOperation({ summary: 'Get Email Usuario' })
-  @Get('getEmail/:email')
-  getEmailUsuario(@Param('email') email: string): Observable<UsuarioDomainEntity> {
+  @Get('getEmail')
+  getEmailUsuario(@Body() email: GetEmailUsuarioDTO): Observable<UsuarioDomainEntity> {
     this.useCase.toFindEmailUsuarios();
     return this.useCase.execute(email);
   }
