@@ -51,9 +51,7 @@ export class UsuarioController {
   }
   @ApiOperation({ summary: 'Get Email Usuario' })
   @Get('getEmail/:email')
-  getEmailUsuario(
-    @Param('email') email: string,
-  ): Observable<UsuarioDomainEntity> {
+  getEmailUsuario(@Param('email') email: string): Observable<UsuarioDomainEntity> {
     this.useCase.toFindEmailUsuarios();
     return this.useCase.execute(email);
   }
