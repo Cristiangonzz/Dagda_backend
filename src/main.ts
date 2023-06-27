@@ -58,7 +58,7 @@
 //   const document = SwaggerModule.createDocument(app, config);
 //   SwaggerModule.setup('api', app, document);
   
-//   await app.listen(3000);
+//   await app.listen(PUERTO_SERVIDOR);
 // }
 // bootstrap();
 
@@ -71,6 +71,8 @@ import * as morgan from 'morgan';
 import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
 import {PUERTO_SERVIDOR,CORS_ORIGIN} from "./config/config" 
+
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 

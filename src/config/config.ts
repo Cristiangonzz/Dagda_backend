@@ -32,7 +32,6 @@ export const PUERTO_SERVIDOR =parseInt(process.env.PUERTO_SERVIDOR,10);
 
 
 
-
 //sftp.json
 // {
 //     "name": "corpdagda",

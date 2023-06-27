@@ -64,7 +64,7 @@ export class CursoController {
   }))
   uploadImage(@UploadedFile() file) {
     console.log(file)
-    const dato = "http://localhost:8080/"+file.path;
+    const dato = "https://backend.corpdagda.com/"+file.path;
     return { filename: dato };
   
   }
