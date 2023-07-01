@@ -28,10 +28,11 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
       type: 'mysql',
       name: connectionName,
       host: MYSQLHOST,
-      port: MYSQLPORT, 
+      port: MYSQLPORT,
       username: MYSQLUSER, 
-      password: MYSQLCLAVE, 
+      password: MYSQLCLAVE,
       database: MYSQLNOMBREDATEBASE, 
+      
       entities: [
         CategoriaMySqlEntity,
         CursoMySqlEntity,
@@ -44,7 +45,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
         NodeMailerMySqlEntity,
         imagenMySqlEntity,
       ],
-      synchronize: true,
+      synchronize: false,
     };
   }
 }

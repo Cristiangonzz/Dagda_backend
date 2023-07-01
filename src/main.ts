@@ -77,14 +77,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.use('/images', express.static('images'));
-  //app.use(express.static(join(__dirname, '..', 'images')));
   app.useGlobalPipes(new ValidationPipe());
   app.use(bodyParser.urlencoded({ extended: true, parameterLimit: 100000, limit: '100mb' }));
   app.use(bodyParser.json({ limit: '100mb' }));
   app.use(morgan('dev'));
 
   app.enableCors({
-    origin: "*",
+    origin: CORS_ORIGIN,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
