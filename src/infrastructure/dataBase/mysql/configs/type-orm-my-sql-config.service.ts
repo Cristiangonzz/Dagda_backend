@@ -32,14 +32,6 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
       username: MYSQLUSER, // this.configService.get<string>('DB_USER'),//'cristian',//
       password: MYSQLCLAVE, //this.configService.get<string>('DB_PASSWORD'), //
       database: MYSQLNOMBREDATEBASE, //this.configService.get<string>('DB_NAME'), //
-      //--------------------------------------------------------------------
-      // type: 'mysql',
-      // name: connectionName,
-      // host: 'localhost', //this.configService.get<string>('DB_HOST'), //
-      // port: 3306, //this.configService.get<number>('DB_PORT'), //3306,//
-      // username: 'root', // this.configService.get<string>('DB_USER'),//'cristian',//
-      // password: '', //this.configService.get<string>('DB_PASSWORD'), //
-      // database: 'dagda', //this.configService.get<string>('DB_NAME'), //
       entities: [
         CategoriaMySqlEntity,
         CursoMySqlEntity,
@@ -52,7 +44,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
         NodeMailerMySqlEntity,
         imagenMySqlEntity,
       ],
-      synchronize: false,
+      synchronize: true,
     };
   }
 }
