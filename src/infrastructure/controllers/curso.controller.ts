@@ -21,6 +21,7 @@ import { UpdateCursoDto } from '../dto/create/update-curso.dto';
 import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { FILEIMAGEPATH } from "../../config/config";
 const path = require('path');
 
 @ApiTags('curso')
@@ -64,7 +65,7 @@ export class CursoController {
   }))
   uploadImage(@UploadedFile() file) {
     console.log(file)
-    const dato = "https://backend.corpdagda.com/"+file.path;
+    const dato = FILEIMAGEPATH+file.path;
     return { filename: dato };
   
   }
