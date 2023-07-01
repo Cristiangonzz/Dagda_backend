@@ -12,6 +12,7 @@ export class CrearMembresiaUseCase {
   execute(data: CrearMembresiaDto): Observable<MembresiaDomainEntity> {
     const membresia = new MembresiaDomainEntity();
     membresia.nombre = data.nombre;
+    membresia.beneficios = data.beneficios;
     membresia.costo = data.costo;
     return this.membresiaervice.register(membresia);
   }

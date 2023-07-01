@@ -12,6 +12,12 @@ export class MembresiaMySqlEntity extends MembresiaDomainEntity {
   nombre?: string;
 
   @Column()
+  beneficios?: string;
+
+  @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
+  fecha_adquirida?: Date;
+
+  @Column()
   vigente?: boolean;
 
   @Column()

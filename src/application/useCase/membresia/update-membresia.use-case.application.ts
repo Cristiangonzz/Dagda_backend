@@ -15,6 +15,7 @@ export class UpdateMembresiaUseCase {
     const updateMembresia = new MembresiaDomainEntity();
 
     updateMembresia.nombre = data.nombre;
+    updateMembresia.beneficios = data.beneficios;
     updateMembresia.costo = data.costo;
     updateMembresia.puede_referenciar = data.puede_referenciar;
     updateMembresia.vigente = data.vigente;

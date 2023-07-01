@@ -7,6 +7,11 @@ export class UpdateMembresiaDto {
     @IsString()
     @IsOptional()
     nombre?: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    beneficios?: string;
     
     @ApiProperty()
     @IsNumber()

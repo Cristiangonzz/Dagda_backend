@@ -2,7 +2,6 @@ import {  IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CrearIncripcionDto {
-
     @ApiProperty()
     @IsString()
     usuario: string;
@@ -10,7 +9,4 @@ export class CrearIncripcionDto {
     @ApiProperty()
     @IsString()
     curso: string;
-
-
-    
 }
