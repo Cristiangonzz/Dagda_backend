@@ -1,7 +1,7 @@
 import { IUsuarioDomain } from '../interfaces/usuario.interface.domain';
 import { v4 as uuidv4 } from 'uuid';
 export class UsuarioDomainEntity implements IUsuarioDomain {
-  usuarioId: string;
+  id: string;
   primer_nombre?: string;
   segundo_nombre?: string;
   primer_apellido?: string;
@@ -17,8 +17,8 @@ export class UsuarioDomainEntity implements IUsuarioDomain {
   vigente?: boolean;
 
   constructor(usuario?: IUsuarioDomain) {
-    if (usuario?.usuarioId) this.usuarioId = usuario.usuarioId;
-    else this.usuarioId = uuidv4();
+    if (usuario?.id) this.id = usuario.id;
+    else this.id = uuidv4();
     if (usuario?.primer_nombre) this.primer_nombre = usuario.primer_nombre;
     if (usuario?.segundo_nombre) this.segundo_nombre = usuario.segundo_nombre;
     if (usuario?.primer_apellido)
