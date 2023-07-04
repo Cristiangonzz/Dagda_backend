@@ -83,7 +83,7 @@ async function bootstrap() {
   app.use(morgan('dev'));
 
   app.enableCors({
-    origin: "http://localhost:4200",
+    origin: "CORS_ORIGIN",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
