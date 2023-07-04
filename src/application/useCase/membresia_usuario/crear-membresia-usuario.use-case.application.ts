@@ -4,7 +4,6 @@ import { MembresiaDomainEntity } from 'src/domain/entities/membresia.entity.doma
 import { IMembresiaUsuarioDomainService } from 'src/domain/services/membresia-usuario.service.domain';
 import { IMembresiaDomainService } from 'src/domain/services/membresia.service.domain';
 import { CrearMembresiaUsuarioDto } from 'src/infrastructure/dto/create/create-membresia-usuario.dto';
-import { CrearMembresiaDto } from 'src/infrastructure/dto/create/create-membresia.dto';
 import { GetEmailUsuarioUseCase } from '../usuario/get-email-usuario.use-case.application copy';
 import { IUsuarioDomainService } from 'src/domain/services/usuario.service.domain';
 import { UsuarioDomainEntity } from 'src/domain/entities/usuario.entity.domain';
@@ -23,18 +22,16 @@ export class CrearMembresiaUsuarioUseCase {
     const caseUsuario = new GetEmailUsuarioUseCase(this.usuarioUsuarioService);
     const caseMembresia = new GetNombreMembresiaUseCase(this.membresiaService);
 
-    return caseUsuario.execute(data.usuario).pipe(
+    return caseUsuario.execute(data.email).pipe(
       map((value: UsuarioDomainEntity) => {
-        if (value) {
-          
+        if (value) {   
           return newMembresiaUsuario.usuario = value;
-          
         } else {
           throw new Error('No se encontro la usuario para asignar a membresia Usuario');
         }
       }),
       switchMap(() => {
-        return caseMembresia.execute(data.membresia).pipe(
+        return caseMembresia.execute(data.nombre).pipe(
           map((value: MembresiaDomainEntity) => {
             if (value) {
               newMembresiaUsuario.membresia = value;

@@ -5,11 +5,11 @@ export class CrearMembresiaUsuarioDto {
 
     @ApiProperty()
     @IsString()
-    usuario: string;
+    email: string;
     
     @ApiProperty()
     @IsString()
-    membresia: string;
+    nombre: string;
 
 
     
