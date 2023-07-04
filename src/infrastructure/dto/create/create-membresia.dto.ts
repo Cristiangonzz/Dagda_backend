@@ -12,8 +12,8 @@ export class CrearMembresiaDto {
     beneficios: string;
     
     @ApiProperty()
-    @IsNumber()
-    @IsPositive()
+    // @IsNumber()
+    // @IsPositive()
     costo: number;
 
     

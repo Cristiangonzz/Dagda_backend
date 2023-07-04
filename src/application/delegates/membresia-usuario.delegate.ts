@@ -16,6 +16,7 @@ import { UsuarioDomainEntity } from 'src/domain/entities/usuario.entity.domain';
 import { DeleteMembresiaUsuarioUseCase } from '../useCase/membresia_usuario/delete-membresia-usuario.use-case.application';
 import { GetIdMembresiaUsuarioUseCase } from '../useCase/membresia_usuario/get-by-id-membresia-usuario.use-case.application';
 import { GetAllMembresiaUsuarioUseCase } from '../useCase/membresia_usuario/get-all-membresia-usuario.use-case.application';
+import { GetUsuarioCursoMembresiaUseCase } from '../useCase/membresia_usuario/get-usuario-membresia.use-case.application';
 
 export class MembresiaUsuarioDelegate implements IUseCase {
   private delegate: IUseCase;

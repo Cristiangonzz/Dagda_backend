@@ -11,7 +11,7 @@ export const MYSQLCLAVE = process.env.MYSQLCLAVE;
 export const MYSQLNOMBREDATEBASE = process.env.MYSQLNOMBREDATEBASE;
 export const CORS_ORIGIN = process.env.CORS_ORIGIN;
 export const PUERTO_SERVIDOR =parseInt(process.env.PUERTO_SERVIDOR);
-export const FILEIMAGEPATH =process.env.FILEIMAGEPATH;
+export const FILEIMAGEPATH = "http://localhost:3000/";
 
 
 

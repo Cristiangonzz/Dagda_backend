@@ -9,4 +9,5 @@ export interface IMembresiaUsuarioDomainService<T extends MembresiaUsuarioDomain
     update(id :string ,persona: T): Observable<T>;
     delete(id: string): Observable<boolean>;
     findAll(): Observable<T[]>;
+    findUsuarioMembresia(usuario : string , membresia : string ): Promise<T[]>;
 }

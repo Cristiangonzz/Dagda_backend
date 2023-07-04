@@ -78,4 +78,14 @@ export class MembresiaUsuarioRepository implements IRepository<MembresiaUsuarioM
       }),
     );
   }
+
+  async findByUsuarioMembresia(usuario: string,membresia:string): Promise<MembresiaUsuarioMySqlEntity[]> {
+    return await this.membresiaRepository
+    .createQueryBuilder('entity')
+    .leftJoinAndSelect('entity.usuario', 'usuario')
+    .leftJoinAndSelect('entity.membresia', 'membresia')
+    .where('usuario.email = :usuario', { usuario })
+    .andWhere('membresia.nombre = :membresia', { membresia })
+    .getMany();
+  }
 }

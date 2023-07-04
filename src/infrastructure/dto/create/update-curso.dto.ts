@@ -39,5 +39,18 @@ export class UpdateCursoDto {
     @IsOptional()
     precio?: number;
 
+     //programa
+  @ApiProperty()
+  @IsOptional()
+  // @IsArray()
+  // @IsString({ each: true })
+  tituloPrograma?: string[];
+
+  @ApiProperty()
+  @IsOptional()
+  // @IsArray()
+  // @IsString({ each: true })
+  descripcionPrograma?: string[];
+
     
 }

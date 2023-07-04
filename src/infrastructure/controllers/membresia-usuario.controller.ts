@@ -15,6 +15,7 @@ import { MembresiaUsuarioService } from '../services/membresia-usuario.service';
 import { UsuarioService } from '../services/usuario.service';
 import { CrearMembresiaUsuarioDto } from '../dto/create/create-membresia-usuario.dto';
 import { MembresiaUsuarioDomainEntity } from 'src/domain/entities/membresia-usuario.entity.domain';
+import { GetUsuarioCursoMembresiaUseCase } from 'src/application/useCase/membresia_usuario/get-usuario-membresia.use-case.application';
 
 @ApiTags('membresia Usuario')
 @Controller('membresia-usuario')
@@ -58,5 +59,16 @@ export class MembresiaUsuarioController {
   findAllMembresiaUsuario(): Observable<MembresiaUsuarioDomainEntity[]> {
     this.useCase.toFindAllMembresiaUsuario();
     return this.useCase.execute();
+  }
+
+  @ApiOperation({ summary: 'find usuario Membresia' })
+  @Get('getMembresiaUsuario/:email/:titulo')
+  findUsuarioMembresia(
+    @Param("email") email: string, @Param("titulo") titulo: string
+  ): Promise<MembresiaUsuarioDomainEntity[]> {
+    const casoDeUso = new GetUsuarioCursoMembresiaUseCase(
+      this.membresiaUsuarioService,
+    );
+    return casoDeUso.execute(email, titulo);
   }
 }

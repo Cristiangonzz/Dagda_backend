@@ -13,6 +13,7 @@ export class MembresiaUsuarioMySqlService
 {
  
   constructor(private readonly membresiaUsuarioRepository: MembresiaUsuarioRepository) {}
+ 
   findOneNombre(nombre: string): Observable<MembresiaUsuarioMySqlEntity> {
     throw new Error('Method not implemented.');
   }
@@ -35,6 +36,9 @@ export class MembresiaUsuarioMySqlService
   
   findOneBy(id: string): Observable<MembresiaUsuarioMySqlEntity> {
       return this.membresiaUsuarioRepository.findById(id);
+  }
+  findUsuarioMembresia(usuario: string, membresia: string): Promise<MembresiaUsuarioMySqlEntity[]> {
+    return this.membresiaUsuarioRepository.findByUsuarioMembresia(usuario,membresia);
   }
   
   

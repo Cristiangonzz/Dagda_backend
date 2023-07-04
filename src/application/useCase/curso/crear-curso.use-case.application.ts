@@ -21,7 +21,7 @@ export class CrearCursoUseCase {
     const newCurso = new CursoDomainEntity();
     let newCategoria: IProgramaCursoDomain[] = [];
     const caseCategoria = new GetNombreCategoriaUseCase(this.categoriaService);
-    //Guardar imagen en el servidor
+    
     if(data.tituloPrograma){
       data.tituloPrograma.forEach((element, index) => {
         newCategoria.push({
