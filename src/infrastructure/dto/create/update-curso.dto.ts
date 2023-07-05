@@ -35,7 +35,7 @@ export class UpdateCursoDto {
     detalle?: string;
 
     @ApiProperty()
-    @IsNumber()
+    //@IsNumber()
     @IsOptional()
     precio?: number;
 
