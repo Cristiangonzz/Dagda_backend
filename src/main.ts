@@ -89,10 +89,10 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Dagda')
+    .setTitle('Academy')
     .setDescription('The cats API description')
     .setVersion('1.0')
-    .addTag('dagda')
+    .addTag('academy')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

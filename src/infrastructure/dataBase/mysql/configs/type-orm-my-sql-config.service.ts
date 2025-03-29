@@ -27,12 +27,12 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
     return {
       type: 'mysql',
       name: connectionName,
-      host: MYSQLHOST,
-      port: MYSQLPORT,
-      username: MYSQLUSER, 
-      password: MYSQLCLAVE,
-      database: MYSQLNOMBREDATEBASE, 
-      
+      host: MYSQLHOST || 'localhost',
+      port: MYSQLPORT || 3306,
+      username: MYSQLUSER || 'academy', 
+      password: MYSQLCLAVE || 'jn316rom623',
+      database: MYSQLNOMBREDATEBASE || 'academy', 
+      autoLoadEntities: true,
       entities: [
         CategoriaMySqlEntity,
         CursoMySqlEntity,

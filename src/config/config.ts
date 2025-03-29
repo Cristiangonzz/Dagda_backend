@@ -24,14 +24,6 @@ export const FILEIMAGEPATH = process.env.FILEIMAGEPATH;
 
 
 
-
-
-
-
-
-
-
-
 //sftp.json
 // {
 //     "name": "corpdagda",
