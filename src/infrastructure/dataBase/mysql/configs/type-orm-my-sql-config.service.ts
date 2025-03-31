@@ -32,7 +32,7 @@ export class TypeOrmMySqlConfigService implements TypeOrmOptionsFactory {
       username: MYSQLUSER || 'academy', 
       password: MYSQLCLAVE || 'jn316rom623',
       database: MYSQLNOMBREDATEBASE || 'academy', 
-      autoLoadEntities: true,
+      // autoLoadEntities: true,
       entities: [
         CategoriaMySqlEntity,
         CursoMySqlEntity,

@@ -13,7 +13,7 @@ import { INodeMailerDomainService } from "src/domain/services/nodemailer.service
             port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
-                user: "academiadagda@gmail.com",
+                user: "cristianuruuy@gmail.com",
                 pass: "ezxwafugoqofhxjt", // generated ethereal password
             },
         });
