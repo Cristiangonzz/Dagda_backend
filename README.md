@@ -9,6 +9,10 @@ $ npm install
 $ docker-compose up --build -d
 $ docker exec -it mysql_db mysqk -u academy -p
 
+docker build -t tu_usuario_docker/nombre_de_tu_imagen .
+docker login
+docker push tu_usuario_docker/nombre_de_tu_imagen
+
 ```
 ## MYSQL
  SHOW DATABASES;

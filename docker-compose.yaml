@@ -1,19 +1,44 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8
-    container_name: mysql_db
+  # db:
+  #   image: mysql:8
+  #   container_name: mysql_db
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: jn316rom623
+  #     MYSQL_DATABASE: academy
+  #     MYSQL_USER: academy
+  #     MYSQL_PASSWORD: jn316rom623
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   networks:
+  #   - slack_bridge
+
+  app:
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: academy_app
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: jn316rom623
-      MYSQL_DATABASE: academy
-      MYSQL_USER: academy
-      MYSQL_PASSWORD: jn316rom623
+      DB_HOST: 172.30.173.83
+      DB_PORT: 3306
+      DB_USER: academy
+      DB_PASSWORD: jn316rom623
+      DB_NAME: academy
     ports:
-      - "3306:3306"
+      - "3000:3000"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - .:/app
+      - /app/node_modules
+    
+networks:
+  slack_bridge:
+    external: true
+ 
 
-volumes:
-  mysql_data:
+# volumes:
+#   mysql_data:

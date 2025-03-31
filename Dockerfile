@@ -13,6 +13,9 @@ RUN npm install
 # Copia el resto del código de la aplicación
 COPY . .
 
+# Ajusta permisos para que el usuario no root pueda escribir
+RUN mkdir -p /app/dist && chmod -R 777 /app
+
 # Expone el puerto en el que corre NestJS
 EXPOSE 3000
 
