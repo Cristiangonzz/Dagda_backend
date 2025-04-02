@@ -38,7 +38,7 @@ export class CategoriaController {
   @Put('update/:nombre')
   updateCategoria(
     @Param('nombre') nombre: string,
-    @Body() newCategoria: UpdateCategoriaDto,
+    @Body() newCategoria: UpdateCategoriaDto
   ): Observable<CategoriaDomainEntity> {
     this.useCase.toUpdateCategoria();
     return this.useCase.execute(nombre, newCategoria);

@@ -17,7 +17,7 @@ COPY . .
 RUN mkdir -p /app/dist && chmod -R 777 /app
 
 # Expone el puerto en el que corre NestJS
-EXPOSE 3000
+EXPOSE 8080
 
 # Comando para iniciar la aplicación
 CMD ["npm", "run", "start"]

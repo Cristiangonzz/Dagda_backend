@@ -6,4 +6,5 @@ export class CrearCategoriaDto {
     @ApiProperty()
     @IsString()
     nombre: string;
+    
 }

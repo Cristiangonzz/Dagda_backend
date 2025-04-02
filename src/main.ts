@@ -68,9 +68,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as morgan from 'morgan';
-import { join } from 'path';
 import { ValidationPipe } from '@nestjs/common';
-import {PUERTO_SERVIDOR,CORS_ORIGIN} from "./config/config" 
+import {PUERTO_SERVIDOR} from "./config/config" 
 
 
 async function bootstrap() {
