@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: openshift-client-task
+spec:
+  params:
+    - name: SCRIPT
+      type: string
+  steps:
+    - name: oc-commands
+      image: quay.io/openshift/origin-cli
+      script: |
+        #!/bin/sh
+        $(params.SCRIPT)

@@ -1,0 +1,23 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: ci-cd-pipeline-run
+spec:
+  pipelineRef:  
+    name: ci-cd-pipeline
+  params:
+    - name: git-url
+      value: "https://github.com/Cristiangonzz/Dagda_backend.git"
+    - name: git-revision
+      value: "master"
+    - name: image-name
+      value: "academy-backend:v1"
+    - name: image-registry
+      value: "docker.io/sofcristian"
+    - name: CONTEXT
+      value: "."
+    - name: DOCKERFILE
+      value: "./Dockerfile"
+  workspaces:
+    - name: shared-data
+      emptyDir: {}
