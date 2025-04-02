@@ -15,7 +15,6 @@ export class CategoriaMySqlEntity extends CategoriaDomainEntity {
   @Column()
   vigente?: boolean;
 
-
   @OneToMany(
     () => CursoMySqlEntity,
     (curso) => curso.categoria,
