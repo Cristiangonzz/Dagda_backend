@@ -1,0 +1,20 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: buildah-task
+spec:
+  params:
+    - name: IMAGE
+      type: string
+    - name: CONTEXT
+      type: string
+    - name: DOCKERFILE
+      type: string
+  steps:
+    - name: build
+      image: quay.io/buildah/stable
+      script: |
+        #!/bin/sh
+        buildah login -u "cristianuruuy@gmail.com" -p "camino17@" docker.io
+        buildah bud -f $(params.DOCKERFILE) -t $(params.IMAGE) $(params.CONTEXT)
+        buildah push $(params.IMAGE)

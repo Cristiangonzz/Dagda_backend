@@ -1,0 +1,53 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: ci-cd-pipeline
+spec:
+  params:
+    - name: git-url
+      type: string
+    - name: git-revision
+      type: string
+      default: "master"
+    - name: image-name
+      type: string
+    - name: image-registry
+      type: string
+      default: "docker.io/sofcristian"
+    - name: CONTEXT
+      type: string
+      default: "."
+    - name: DOCKERFILE
+      type: string
+      default: "Dockerfile"
+  tasks:
+    - name: fetch-source
+      taskRef:
+        name: git-clone-task
+      params:
+        - name: url
+          value: "$(params.git-url)"
+        - name: revision
+          value: "$(params.git-revision)"
+        - name: subdirectory
+          value: "source"
+    - name: build-image
+      taskRef:
+        name: docker-build
+      runAfter: ["fetch-source"]
+      params:
+        - name: image
+          value: "$(params.image-registry)/$(params.image-name)"
+        - name: context
+          value: "$(params.CONTEXT)"
+        - name: dockerfile
+          value: "$(params.DOCKERFILE)"
+    - name: deploy-app
+      taskRef:
+        name: openshift-client-task
+      runAfter: ["build-image"]
+      params:
+        - name: SCRIPT
+          value: |
+            oc rollout restart deployment/$(params.image-name)
+
